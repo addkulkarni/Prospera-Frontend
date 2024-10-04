@@ -1,0 +1,43 @@
+.enquiry-form{
+    color: #233b5e;
+}
+.subheading{
+    float: left;
+    text-align: left;
+    color: #7f8285;
+}
+label{
+    margin-right: 10px;
+}
+input, select{
+    width:400px;
+    border-top:1px groove #233b5e;
+    border-left:1px groove #233b5e;
+    border-bottom: none;
+    border-right: none;
+    padding:5px;
+    border-radius: 4px;
+}
+.submit-button{
+    width:80%;
+    background-color: #48c5b7;
+    height:40px;
+    border: none;
+    border-radius: 10px;
+    color: #233b5e;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.submit-button:hover{
+    background-color: #3bb4a6;
+    transition-duration: 0.5s;
+    color: #233b5e;
+}
+span{
+    color:rgb(236, 99, 99);
+    font-size: 15px;
+}
+.form-element{
+    width:200%;
+    float: left;
+    text-align: left;
+}
