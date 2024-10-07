@@ -1,0 +1,66 @@
+.logo{
+    width:160px;
+    height:auto;
+    margin: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.navbar-box-left{
+  display: flex;
+
+}
+
+.navbar-list li {
+  margin: 0 5px;
+}
+
+.navbar-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-box-right{
+  display: flex;
+  float: right;
+}
+
+.navbar-list li a {
+  text-decoration: none;
+  color: #344d70;
+  padding: 10px 5px;
+  display: block;
+  border-radius: 30px;
+  width: 150px; 
+  text-align: center;
+}
+
+
+.menu-elements:hover {
+  background-color: #48c5b7;
+  transition: background-color 0.5s ease-in-out;
+  cursor:pointer;
+}
+
+.login-button {
+  background-color: #48c5b7;
+  border-radius: 30px;
+  color: #ffffff;
+}
+
+
+

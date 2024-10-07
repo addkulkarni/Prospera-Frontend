@@ -1,10 +1,10 @@
 .App {
   text-align: center;
-  background-image: url('/public/Images/Artboard\ 1.png');
-  background-size: cover;    
-  background-position: center;
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 7%, rgba(72,197,183,1) 66%, rgba(35,59,94,1) 100%); background-position: center;
   background-repeat: no-repeat; 
-  height: 100vh; 
+  font-size: 14px;
+  height: 110vh; 
   
 }
 
