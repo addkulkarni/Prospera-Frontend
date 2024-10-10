@@ -1,14 +1,22 @@
-import React from 'react';
-import './Login.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import validator from '../../validation/Validator'
+import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 function Login() {
+  const oenavigation = useNavigate()
     const{register,handleSubmit,reset}=useForm()
     function loginuser(e)
-    {
-        console.log(e);
+    { 
+        if(e.username==='oe' && e.password==='oe')
+        {
+          oenavigation('/oe');
+        }
+        else
+        {
+          alert("Incorrect username or password")
+        }
         reset();
     }
     return (
