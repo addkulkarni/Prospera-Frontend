@@ -1,0 +1,47 @@
+/* Login.css */
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; /* Full viewport height */
+  }
+  
+  .login-form-container {
+    height: 300px; /* Increased height for better spacing */
+    width: 500px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0.9; /* Slightly more opaque */
+    padding: 20px; /* Added padding for inner spacing */
+  }
+  
+  .login-title {
+    text-align: center;
+    color: #233b5e; /* Title color to match other components */
+    margin-bottom: 20px; /* Space below the title */
+  }
+  
+  .login-field {
+    width:80%;
+    padding: 8px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .login-form-button {
+    margin: 10px;
+    background-color: #233b5e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80%; /* Make button full width */
+  }
+  .icon {
+    color: #233b5e; /* Color to match other components */
+    font-size: 1.2em; /* Adjust the size of the icons */
+  }

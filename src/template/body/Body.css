@@ -1,0 +1,17 @@
+/* Main container for the body */
+.div-container {
+    display: flex;
+    justify-content: space-between; /* Space between the form and the heading */
+    align-items: center;           /* Center vertically */
+    padding: 0 50px;               /* Add horizontal padding */
+  }
+  
+  /* Styling for the heading on the left side */
+  .heading {
+    color: #233b5e;
+    flex: 1;                       /* Allow heading to take available space */
+    display: flex;
+    justify-content: center;       /* Center the heading text horizontally */
+    align-items: center;           /* Center the heading text vertically */
+  }
+  
