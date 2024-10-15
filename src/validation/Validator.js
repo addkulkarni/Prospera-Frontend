@@ -1,7 +1,7 @@
 const validator = {
     fname: {
       required: { value: true, message: "*Required field." },
-      minLength: { value: 3, message: "*Name must contain at least 3 characters" },
+      minLength: { value: 3, message: "*Must contain minimum 3 characters" },
     },
     age: {
       required:{value:true,message:"*Required field"},

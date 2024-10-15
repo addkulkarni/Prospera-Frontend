@@ -1,0 +1,86 @@
+.form-container {
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(72,197,183,1) 21%, rgba(35,59,94,1) 100%);
+    min-height: 100vh; /* Ensures it covers at least the full viewport height */
+    height: auto; /* Adjusts based on content height */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:0px;
+}
+
+
+  
+  .customer-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .customer-form h4 {
+    grid-column: 1 / -1; /* Makes the header span across both columns */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #233b5e;
+  }
+  .customer-form h5{
+    color: #233b5e; 
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  .form-element {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-element label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #233b5e;
+  }
+  
+  .form-element input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+   
+  }
+  
+  .verify-button {
+    grid-column: 1 / -1; /* Makes the button span across both columns */
+    background-color: #233b5e;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .verify-button:hover {
+    background-color: #192f50;
+  }
+  
+  .back-arrow {
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #007bff;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.back-arrow:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,46 @@
+.outer-container{
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(72,197,183,1) 30%, rgba(35,59,94,1) 100%);
+    min-height: 100vh; /* Ensures it covers at least the full viewport height */
+    height: auto; /* Adjusts based on content height */
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:0px;
+}
+
+/* Oe.css */
+
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .header {
+    background: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .content {
+    flex: 1; /* This will take up the remaining space */
+    padding: 20px;
+    background: #e9ecef;
+  }
+  
+  .footer {
+    background: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+  }
+  
