@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Body from './template/body/Body';
-import Login from './template/login/Login';
-import Oe from './template/oe/Oe';
-import Cm from './template/cm/Cm.js';
-import SetLoanDetails from './template/cm/setloandetails/SetLoanDetails.js';
+import Body from './include/body/Body';
+import Login from './include/login/Login';
+import SetLoanDetails from './modules/cm/setloandetails/SetLoanDetails.js';
+import Dashboard from './include/dashboard/Dashboard.js';
 
 function App() {
   return (
@@ -14,8 +13,7 @@ function App() {
         <Routes>
           <Route path="" element={<Body/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
-          <Route path="/oe" element={<Oe/>}></Route>
-          <Route path="/cm" element={<Cm/>}></Route>
+          <Route path="dashboard/*" element={<Dashboard/>}></Route>
           <Route path="/setloandetails/:cid" element={<SetLoanDetails />} />
         </Routes>
         

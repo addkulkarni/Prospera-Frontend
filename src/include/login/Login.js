@@ -11,12 +11,25 @@ function Login() {
     { 
         if(e.username==='oe' && e.password==='oe')
         {
-          oenavigation('/oe');
+          oenavigation('/dashboard/oe');
         }
-        else
-        {
-          alert("Incorrect username or password")
-        }
+        else if(e.username==='re' && e.password==='re')
+          {
+            oenavigation('/dashboard/re');
+          }
+          else if(e.username==='cm' && e.password==='cm')
+            {
+              oenavigation('/dashboard/cm');
+            }
+            else if(e.username==='ah' && e.password==='ah')
+              {
+                oenavigation('/dashboard/ah');
+              }
+
+                else
+                {
+                  alert("Incorrect username or password")
+                }
         reset();
     }
     return (

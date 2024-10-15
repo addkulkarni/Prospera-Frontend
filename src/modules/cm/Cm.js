@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
-import Header from '../header/Header';
+import Header from '../../include/header/Header';
 import { useNavigate } from 'react-router-dom';
 import  '../cm/Cm.css';
 
@@ -149,7 +149,7 @@ function generatesanctionletter(cid)
     ]
   return (
     <div>
-<Header/>
+
         <div className='m-3'>
             
             

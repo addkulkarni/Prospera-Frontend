@@ -3,7 +3,7 @@ import axios from 'axios';
 import './SetLoanDetails.css'
 import {useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import Header from '../../header/Header';
+import Header from '../../../include/header/Header';
 
 function SetLoanDetails() {
  

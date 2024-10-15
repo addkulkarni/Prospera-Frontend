@@ -6,7 +6,7 @@ import './Navbar.css';
 function Navbar(){
   return (
     <div className="navbar-container">
-      <Link to={'/'}><img className="logo" alt="Not available" src="./Images/Prospera Logo Text.png"></img></Link>
+      <Link to={'/'}><img className="logo" alt="Not available" src="/Images/Prospera Logo Text.png"></img></Link>
         <nav className="navbar">
           <div className='navbar-box-left'>
             <ul className='navbar-list'>
@@ -22,7 +22,7 @@ function Navbar(){
           </div>
           
         </nav>
-      
+     
     </div>
   )
 }
