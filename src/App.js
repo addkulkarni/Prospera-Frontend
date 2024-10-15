@@ -1,24 +1,24 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Body from './template/body/Body';
-import Navbar from './template/navbar/Navbar';
-import Footer from './template/footer/Footer';
-import { BrowserRouter } from 'react-router-dom';
-import { Routes } from 'react-router-dom';
-import { Route } from 'react-router-dom';
 import Login from './template/login/Login';
+import Oe from './template/oe/Oe';
+import RE from './template/re/RE';
 import Registration from './template/registration/Registration';
-
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar></Navbar>
+        
         <Routes>
           <Route path="" element={<Body/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
+          <Route path="/oe" element={<Oe/>}></Route>
+          <Route path="/re" element={<RE/>}></Route>
+          <Route path='/registration/:enquiryId' element={<Registration/>}></Route>
         </Routes>
         
-        <Footer></Footer>
+        
       </BrowserRouter>
       
       

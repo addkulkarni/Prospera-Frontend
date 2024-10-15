@@ -20,10 +20,6 @@ function Enquiry() {
   function submitForm(e)
   {
     axios.post('http://localhost:9091/enquiry/addenquiry',e).then(response=>console.log(response.data)).catch(()=>alert("Something went wrong"));
-    setStatement("Thank you. Our team will get in touch with you shortly.");
-
-    console.log(errors.fname);
-    reset();
   }
 
   function checkValue(e)
@@ -40,10 +36,10 @@ function Enquiry() {
       {step===1 && (
       <div className='setp'>
         <div className='form-element'><label>First name: </label><span>{errors.fname&&errors.fname.message}</span><br/>
-        <input onChange={handleSubmit(submitForm)} type="text" {...register('fname',validator.fname)}/><br/><br/></div>
+        <input onChange={handleSubmit(submitForm)} type="text" {...register('firstName',validator.fname)}/><br/><br/></div>
         
         <div className='form-element'><label>Last name: </label><br/>
-        <input type="text" {...register('lname')}/><br/><br/></div>
+        <input type="text" {...register('lastName')}/><br/><br/></div>
         
         <div className='form-element'><label>Age: </label><span>{errors.age&&errors.age.message}</span><br/>
         <input type="number" {...register('age',validator.age)}/><br/><br/></div>
@@ -70,10 +66,10 @@ function Enquiry() {
         </select><br/><br/></div>
         
         <div className='form-element'><label>PAN card number: </label><span>{errors.pan&&errors.pan.message}</span><br/>
-        <input type="text" {...register('pan',validator.pan)}/><br/><br/></div>
+        <input type="text" {...register('pancardNo',validator.pan)}/><br/><br/></div>
         
         <div className='form-element'><label>Aadhar card number: </label><span>{errors.adhar&&errors.adhar.message}</span><br/>
-        <input type="text" {...register('adhar',validator.adhar)}/><br/><br/></div>
+        <input type="text" {...register('adharcardNo',validator.adhar)}/><br/><br/></div>
         </div>
       )} 
         

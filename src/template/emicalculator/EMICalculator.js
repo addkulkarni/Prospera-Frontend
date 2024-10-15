@@ -30,15 +30,15 @@ function EMICalculator() {
         <form onSubmit={handleSubmit(calculateEmi)}>
           <div className='calculator-field'>
             <label>Home Loan amount</label>
-            <input type='number' {...register('amount')} defaultValue={1000000} ></input><i class="bi bi-currency-rupee"></i>
+            <input type='number' {...register('amount')} defaultValue={1000000} ></input><i className="bi bi-currency-rupee"></i>
           </div>
           <div className='calculator-field'>
             <label>Interest Rate (annual)</label>
-            <input type='number' {...register('rate')} defaultValue={12} ></input><i class="bi bi-percent"></i>
+            <input type='number' {...register('rate')} defaultValue={12} ></input><i className="bi bi-percent"></i>
           </div>
           <div className='calculator-field'>
             <label>Loan Tenure (In months)</label>
-            <input type='number' {...register('tenure')} defaultValue={24} ></input><i class="bi bi-calendar"></i>
+            <input type='number' {...register('tenure')} defaultValue={24} ></input><i className="bi bi-calendar"></i>
           </div>
           <button type='submit' className='submit-button'>Calculate EMI</button>
         </form>
