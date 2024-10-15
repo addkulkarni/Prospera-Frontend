@@ -3,7 +3,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-
 function Login() {
   const oenavigation = useNavigate()
     const{register,handleSubmit,reset}=useForm()
