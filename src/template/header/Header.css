@@ -1,0 +1,40 @@
+.header-container {
+    width: 100%;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between; /* Places logo at the left and login at the right */
+    align-items: center; /* Vertically centers the elements */
+    padding: 10px 20px; /* Adds padding to the navbar */
+    height: 60px; /* Set a specific height for the navbar */
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center; /* Vertically centers the logo */
+  }
+  
+  .logo {
+    height: 40px; /* Adjust the logo height as required */
+    margin-left: 20px; /* Adds space between the logo and the edge */
+  }
+  
+  .navbar-box-right {
+    margin-right: 20px; /* Adds space between the login link and the right edge */
+  }
+  
+  .login-link {
+    border-radius: 30px;
+    text-decoration: none; /* Removes the underline */
+    background-color: #48c5b7;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #ffffff; /* Sets the color for the login link */
+    font-size: 18px; /* Sets the font size */
+  }
+  
+  .login-link:hover {
+    text-decoration: underline; /* Adds underline on hover */
+  }
+  

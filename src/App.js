@@ -1,24 +1,25 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Body from './template/body/Body';
-import Navbar from './template/navbar/Navbar';
-import Footer from './template/footer/Footer';
-import { BrowserRouter } from 'react-router-dom';
-import { Routes } from 'react-router-dom';
-import { Route } from 'react-router-dom';
 import Login from './template/login/Login';
-import Registration from './template/registration/Registration';
+import Oe from './template/oe/Oe';
+import Cm from './template/cm/Cm.js';
+import SetLoanDetails from './template/cm/setloandetails/SetLoanDetails.js';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar></Navbar>
+        
         <Routes>
           <Route path="" element={<Body/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
+          <Route path="/oe" element={<Oe/>}></Route>
+          <Route path="/cm" element={<Cm/>}></Route>
+          <Route path="/setloandetails/:cid" element={<SetLoanDetails />} />
         </Routes>
         
-        <Footer></Footer>
+        
       </BrowserRouter>
       
       

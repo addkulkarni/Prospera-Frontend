@@ -30,10 +30,10 @@ function Footer() {
       <div className="footer-right">
         <p>
           © 2024 Prospera Finance. All Rights Reserved. <br />
-          <i class="bi bi-globe"></i> <a href="#">www.prosperafinance.com</a><br/>
-          <i class="bi bi-telephone"></i> +91-7547854425
+          <i className="bi bi-globe"></i> <a href="#">www.prosperafinance.com</a><br/>
+          <i className="bi bi-telephone"></i> +91-7547854425
           <br/>+91-8965745823
-          <br/><i class="bi bi-envelope"></i> prosperafinance@gmail.com
+          <br/><i className="bi bi-envelope"></i> prosperafinance@gmail.com
         </p>
       </div>
     </footer>
