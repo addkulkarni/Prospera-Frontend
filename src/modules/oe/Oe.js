@@ -15,7 +15,7 @@ function Oe() {
     const [filter, setFilter] = useState(''); 
     const[showForm,setShowForm]=useState(false);
     useEffect(()=>{
-        axios.get('http://mypc:9092/oe/oetasks')
+        axios.get('http://localhost:9092/oe/oetasks')
         .then(response=>{setData(response.data);setFilteredData(response.data)})
         .catch(error=>console.log("Something went wrong"))
     },[])
@@ -40,14 +40,14 @@ function Oe() {
         
         setShowForm(true);
         
-        axios.get(`http://mypc:9092/oe/getCustomerDetails/${index}`)
+        axios.get(`http://localhost:9092/oe/getCustomerDetails/${index}`)
         .then(response=>{setCustomer(response.data)})
         .catch(error=>alert("Something went wrong"));
     }
 
     const callCalculateCibil = (index) =>{
         setLoading(true);
-        axios.get(`http://mypc:9092/oe/cibilscore/${index}`)
+        axios.get(`http://localhost:9092/oe/cibilscore/${index}`)
         .then(response=>{setCustomer(response.data);alert(`Your cibil score is: ${response.data}`)})
         .catch(error=>console.log("Something went wrong"))
         .finally(() => setLoading(false));
@@ -100,7 +100,7 @@ function Oe() {
     const handleVerificationComplete = () => {
         setShowForm(false);
         // Refresh data if needed after verification
-        axios.get('http://mypc:9092/oe/oetasks')
+        axios.get('http://localhost:9092/oe/oetasks')
             .then(response => {
                 setData(response.data);
                 setFilteredData(response.data);
