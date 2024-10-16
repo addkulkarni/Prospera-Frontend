@@ -147,36 +147,33 @@ function generatesanctionletter(cid)
         }
     ]
   return (
-    <div>
-    {(showForm)? (<SetLoanDetails cid={selectedCid} setShowForm={setShowForm} /> ):(<div>
-        <div className='m-3'>
+            <div>
             {
-                <div style={{ marginBottom: '20px' }} className='float-start'>
-                <label className='m-3'>Filter By:</label>&nbsp;&nbsp;
-                    <select value={filter} onChange={handleFilterChange} className='m1-auto'>
-                        <option disabled>Filter by</option>
-                        <option value="Pending Sanction">Pending Sanction Details</option>
-                        <option value="Sanction Process In Progress">Pending EMI Calculation</option>
-                        <option value="EMI calculated">Pending Sanction letter generation</option>
-                        <option value="">Show all</option>
-                    </select>
-            </div>
+                (showForm)? (<SetLoanDetails cid={selectedCid} setShowForm={setShowForm} /> ):(
+                <div>
+                    <div className='m-3'>
+                    {
+                        <div style={{ marginBottom: '20px' }} className='float-start'>
+                            <label className='m-3'>Filter By:</label>&nbsp;&nbsp;
+                            <select value={filter} onChange={handleFilterChange} className='m1-auto'>
+                                <option disabled>Filter by</option>
+                                <option value="Pending Sanction">Pending Sanction Details</option>
+                                <option value="Sanction Process In Progress">Pending EMI Calculation</option>
+                                <option value="EMI calculated">Pending Sanction letter generation</option>
+                                <option value="">Show all</option>
+                            </select>
+                        </div>
+                    } 
+                    </div>
 
-            } 
-            
-        </div>
-
-        <div className=' mt-3 m-3' style={{minHeight:'94vh'}}>
-        <DataTable columns={cols} data={filteredData
-             } pagination fixedHeader> </DataTable>
-
-        </div>
+                    <div className=' mt-3 m-3' style={{minHeight:'94vh'}}>
+                        <DataTable columns={cols} data={filteredData} pagination fixedHeader> </DataTable>
+                    </div>
         
-    </div>
-    
-    )}
-</div>
-);
+                </div>)
+            } 
+            </div>  
+        );
 }
 
 

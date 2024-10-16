@@ -4,7 +4,7 @@ import Body from './include/body/Body';
 import Dashboard from './include/dashboard/Dashboard';
 import Login from './include/login/Login';
 
-import Dashboard from './include/dashboard/Dashboard';
+
 import Register from './modules/re/registration/Register';
 
 function App() {
