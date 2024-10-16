@@ -5,31 +5,26 @@ import {useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Header from '../../../include/header/Header';
 
-function SetLoanDetails() {
+function SetLoanDetails({ cid, setShowForm }) {
  
    const { register,handleSubmit}=useForm();
-  const {cid}=useParams();
-
-  // const[InputData,setInputData]=useState([])
-
-   const nnavigate= useNavigate();
    
-  function submitForm(e)
+  function submitForm(data)
   {
    
-    axios.post(`http://localhost:9095/cm/setloandetails/${cid}`,e)
+    axios.post(`http://localhost:9095/cm/setloandetails/${cid}`,data)
     .then(response=>{
       console.log(response.data);
       alert("Data Saved Successfully..!")
-      
+      setShowForm(false); 
     }
   ).catch(()=>alert("Something went wrong"));
-  nnavigate('/cm')
+  
   }
   return (
  
     <div >
-        <Header/>
+        
      <div className='setLoan-form-container'>
     
         <form className='setLoan-form' onSubmit={handleSubmit(submitForm)}>
