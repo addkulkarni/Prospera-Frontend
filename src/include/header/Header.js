@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css'; // Your custom styles
+import './Header.css' // Your custom styles
 import { FaUser } from 'react-icons/fa'; // Using React Icons for the user icon
 
 function Header() {

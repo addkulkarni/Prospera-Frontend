@@ -1,0 +1,10 @@
+.set-cm-button {
+    margin: 10px;
+    background-color: #233b5e;
+    color: white;
+    border: none;
+    /* padding: 12px 24px; */
+    border-radius: 5px;
+    cursor: pointer;
+    /* width: 90px; Make button full width */
+  }
