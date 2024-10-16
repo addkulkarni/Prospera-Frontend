@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../header/Header'
+import Header from '../../include/header/Header'
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -51,7 +51,7 @@ const cols=[
     name: "Action",
     cell: (row) => (
       //  <Link className='btn btn-warning me-2 login-form-button' to={'register'}>Register</Link>
-      <button style={{ backgroundColor: '#4CAF50', color: 'white', padding: '10px', border: 'none', borderRadius: '10px', cursor: 'pointer' }} onClick={()=>saveRegister(row.enquiryID)}>
+      <button style={{ backgroundColor: '#233b5e', color: 'white', padding: '10px', border: 'none', borderRadius: '10px', cursor: 'pointer' }} onClick={()=>saveRegister(row.enquiryID)}>
         Register
       </button>
     ),
@@ -63,7 +63,7 @@ const cols=[
   return (
     <div>
       <div>
-        <Header></Header>
+
         <i className="bi bi-filter"></i>&nbsp;&nbsp;
         <select>
           <option value="" disabled>SELECT</option>

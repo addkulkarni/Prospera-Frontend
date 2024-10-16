@@ -3,13 +3,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import validator from '../../validation/Validator';
-import '../registration/Registration.css';
-
-
+import validator from '../../../validation/Validator';
+import './Registration.css';
 
 function Registration() {
-  const { enquiryId } = useParams();
+  const { enquiryId} = useParams();
   const [step, setStep] = useState(1);
   const [statement,setStatement] = useState("");
   const {register,handleSubmit, reset,setValue,formState:{errors}}=useForm()
@@ -57,6 +55,45 @@ function Registration() {
     const { name, files } = e.target;
     setFiles(prevFiles => ({ ...prevFiles, [name]: files[0] }));
   };
+
+
+//   const submitForm = (data) => {
+//     const formData = new FormData();
+    
+//     // Append all form fields
+//     for (const key in data) {
+//         formData.append(key, JSON.stringify(data[key])); // Keep handling nested objects
+//     }
+    
+//     // Append files based on the keys
+//     if (files.adhar) formData.append("adhar", files.adhar);
+//     if (files.pan) formData.append("pan", files.pan);
+//     if (files.photo) formData.append("photo", files.photo);
+//     if (files.sign) formData.append("sign", files.sign);
+//     if (files.incomeCertificate) formData.append("incomeCertificate", files.incomeCertificate);
+//     if (files.salarySlip) formData.append("salarySlip", files.salarySlip);
+
+//     // Log formData for debugging
+//     formData.forEach((value, key) => {
+//         console.log(key, value);
+//     });
+
+//     axios.post('http://localhost:9093/re/savedata', formData)
+//         .then(response => {
+//             console.log(response.data);
+//             alert('Registration successfully');
+//         })
+//         .catch((error) => {
+//           const errorMessage = error.response?.data || "Something went wrong";
+//           console.error("Error saving data:", error);
+//           alert(errorMessage);
+//       });
+// };
+
+
+
+
+
   const submitForm = (data) => {
     const formData = new FormData();
     
@@ -64,22 +101,30 @@ function Registration() {
     for (const key in data) {
       let dt = JSON.stringify(data[key])
       // formData.append(key, dt);
-      formData.append("data",dt)
+      formData.append("data", dt)
     }
     
     // Append all files
     for (const key in files) {
-      if (files[key]) {
-        formData.append(key, files[key]);
-      }
+      console.log(files)
+      // if (files[key]) {
+        // formData.append(key, files[key]);
+        formData.append("adhar", files[key]);
+        formData.append("pan", files[key]);
+        formData.append("photo", files[key]);
+        formData.append("sign", files[key]);
+        formData.append("incomeCertificate", files[key]);
+        formData.append("salarySlip", files[key]);
+      // }
     }
+
   
     // Log formData for debugging
     formData.forEach((value, key) => {
       console.log(key,value);
     });
   
-    axios.post(`http://localhost:9093/re/savedata`, formData)
+    axios.post('http://localhost:9093/re/savedata', formData)
       .then(response => {
         console.log(response.data);
         alert('Registration successfully');
@@ -98,11 +143,12 @@ function Registration() {
       
       <form className='register-form' onSubmit={handleSubmit(submitForm)}>
       <h5 className='subheading1'>{statement}</h5>
-      <input hidden {...register('enquiry.enquiryID')}/>
+      {/* <input hidden {...register('enquiry.enquiryID')}/> */}
       {step===1 && (
       <div className='step'>
         <h4>Personal Details</h4>
-    
+        <div className='form-element1'><label>Enquiry Id: </label>
+        <input type="number" {...register('enquiryID')}/></div>
         <div className='form-element1'><label>First name: </label><span>{errors.fname&&errors.fname.message}</span>
         <input type="text" {...register('firstName')}/></div>
         <div className='form-element1'><label>Last name: </label>
@@ -141,19 +187,19 @@ function Registration() {
         <div>
           <h2>Bank Details</h2>
        <div className='form-element1'><label>Bank Name:</label>
-       <input type='text' {...register('bank.bankName',validator.bankName)}/></div>
+       <input type='text' {...register('bank.bankName')}/></div>
 
         <div className='form-element1'><label>Branch Name:</label>
-        <input type='text' {...register('bank.branch',validator.branch)}/></div>
+        <input type='text' {...register('bank.branch')}/></div>
 
         <div className='form-element1'><label>IFSC Code:</label>
-        <input type='text' {...register('bank.ifsccode',validator.ifsccode)}/></div>
+        <input type='text' {...register('bank.ifsccode')}/></div>
 
         <div className='form-element1'><label>Account Number:</label>
-        <input type='text' {...register('bank.accNo',validator.accNo)}/></div>
+        <input type='number' {...register('bank.accNo')}/></div>
 
         <div className='form-element1'><label>Account Type:</label>
-        <input type='text' {...register('bank.accType',validator.accType)}/></div>
+        <input type='text' {...register('bank.accType')}/></div>
          </div>
       )}
 
@@ -161,13 +207,13 @@ function Registration() {
         <div>
           <h2>Employment Details</h2>
           <div className='form-element1'><label>Organization Name:</label>
-          <input type='text' {...register('emp.organization',validator.organization)}/></div>
+          <input type='text' {...register('emp.organization')}/></div>
 
           <div className='form-element1'><label>Organization Type:</label>
-          <input type='text' {...register('emp.type',validator.type)}/></div>
+          <input type='text' {...register('emp.type')}/></div>
 
           <div className='form-element1'><label>Organization Status:</label>
-          <input type='text' {...register('emp.status',validator.status)}/></div>
+          <input type='text' {...register('emp.status')}/></div>
 
         </div>
         
@@ -177,23 +223,23 @@ function Registration() {
         <div>
           <h2>Permanent Address</h2>
         <div className='form-element1'><label>Area Name: </label><span>{errors.amount&&errors.amount.message}</span>
-        <input type="text" {...register('padr.areaName',validator.areaName)}/></div>
+        <input type="text" {...register('padr.areaName')}/></div>
         
         <div className='form-element1'><label>City Name: </label>
-        <input type="text" {...register('padr.cityName',validator.cityName)}/></div>
+        <input type="text" {...register('padr.cityName')}/></div>
 
         <div className='form-element1'><label>District:</label>
-        <input type='text' {...register('padr.district',validator.district)}/></div>
+        <input type='text' {...register('padr.district')}/></div>
 
         <div className='form-element1'><label>Pincode:</label><br/>
-        <input type='text' {...register('padr.pincode',validator.pincode)}/></div>
+        <input type='number' {...register('padr.pincode')}/></div>
 
 
         <div className='form-element1'><label>State:</label>
-        <input type='text' {...register('padr.state',validator.state)}/></div>
+        <input type='text' {...register('padr.state')}/></div>
 
         <div className='form-element1'><label>Country:</label>
-        <input type='text' {...register('padr.country',validator.country)}/></div>
+        <input type='text' {...register('padr.country')}/></div>
 
     
         </div>
@@ -203,23 +249,23 @@ function Registration() {
         <div>
           <h2>Local Address</h2>
         <div className='form-element1'><label>Area Name: </label><span>{errors.amount&&errors.amount.message}</span>
-        <input type="text" {...register('ladr.areaName',validator.areaName)}/></div>
+        <input type="text" {...register('ladr.areaName')}/></div>
         
         <div className='form-element1'><label>City Name: </label>
-        <input type="text" {...register('ladr.cityName',validator.cityName)}/></div>
+        <input type="text" {...register('ladr.cityName')}/></div>
 
         <div className='form-element1'><label>District:</label>
-        <input type='text' {...register('ladr.district',validator.district)}/></div>
+        <input type='text' {...register('ladr.district')}/></div>
 
         <div className='form-element1'><label>Pincode:</label><br/>
-        <input type='text' {...register('ladr.pincode',validator.pincode)}/></div>
+        <input type='number' {...register('ladr.pincode')}/></div>
 
 
         <div className='form-element1'><label>State:</label>
-        <input type='text' {...register('ladr.state',validator.state)}/></div>
+        <input type='text' {...register('ladr.state')}/></div>
 
         <div className='form-element1'><label>Country:</label>
-        <input type='text' {...register('ladr.country',validator.country)}/></div>
+        <input type='text' {...register('ladr.country')}/></div>
 
     
         </div>
