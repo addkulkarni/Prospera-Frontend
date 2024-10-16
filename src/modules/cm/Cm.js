@@ -1,30 +1,60 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
-import Header from '../../include/header/Header';
 import { useNavigate } from 'react-router-dom';
-import  '../cm/Cm.css';
 
+import  '../cm/Cm.css';
+import SetLoanDetails from './setloandetails/SetLoanDetails';
 
 
 function Cm() {
     const[data,setData]=useState([]);
+    const [filter, setFilter] = useState(''); 
+    const[showForm,setShowForm]=useState(false);
+    const [filteredData, setFilteredData] = useState([]);
+    const [selectedCid, setSelectedCid] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(()=>{
-        axios.get('http://localhost:9095/cm/getallpendingsanctionbyLoanStatus')
-        .then(response=>{setData(response.data);console.log(response.data)})
+        axios.get('http://localhost:9095/cm/getallpendingsanction')
+        .then(response=>{setData(response.data);setFilteredData(response.data)
+
+        }
+       )
         .catch(error=>console.log("Something went wrong"));
         
     },[])
-    const navigate = useNavigate();
+    const handleFilterChange = (e)=>{
+        const filterValue = e.target.value;
+        setFilter(filterValue);
 
-    const SetLoanDetails = (cid) => {
-        navigate(`/setloandetails/${cid}`);
+        if(filterValue==='')
+        {
+           
+            setFilteredData(data);
+        }
+        else
+        {
+            const newData = data.filter(row=>row.enquiry.enquiryStatus===filterValue)
+            setFilteredData(newData);
+        }
+    }
+    const handleSetLoanDetails = (cid) => {
+        setSelectedCid(cid); // Set the selected CID
+        setShowForm(true); // Show the form
     };
+    
+
+    // const SetLoanDetails = () => {
+    //     //  navigate(`setloandetails/${cid}`);
+    //     setShowForm(true);
+        
+    // };
     function calculateEmi(cid)
     {
         axios.get(`http://localhost:9095/cm/calculateEMI/${cid}`)
-        .then(response => {console.log(response.data);navigate(0);
+        .then(response => {console.log(response.data);  
+         navigate(0);
             // alert(`EMI amount is ${emiAmount}`);
         })
         .catch(() => console.log("Something went wrong"));
@@ -32,40 +62,8 @@ function Cm() {
 
 function generatesanctionletter(cid)
 {
-    // axios.get(`http://localhost:9095/cm/generatesanctionletter/${cid}`)
-    // axios.get(`http://laptop-24mcb6q9:9095/cm/emailsanctionletter/${cid}`)
-    // .then(response => {console.log(response.data,"downloaded letter and mail send"); //navigate(0);
-        
-    // })
-    // .catch(() => console.log("Something went wrong"));
-
-
     const sanctionLetterUrl =`http://localhost:9095/cm/generatesanctionletter/${cid}`;
     const emailSanctionLetterUrl =`http://localhost:9095/cm/emailsanctionletter/${cid}`;
-
-        // Promise.all([
-        //     axios.get(sanctionLetterUrl),
-        //     axios.get(emailSanctionLetterUrl)
-        // ])
-        // .then(([sanctionResponse, emailResponse]) => {
-        //     console.log(sanctionResponse.data, "Sanction letter generated");
-        //     console.log(emailResponse.data, "Email sent");
-        // })
-        // .catch(() => console.log("Something went wrong"));
-
-        // Promise.allSettled([
-        //     axios.get(sanctionLetterUrl),
-        //     axios.get(emailSanctionLetterUrl)
-        // ])
-        // .then((results) => {
-        //     results.forEach((result, index) => {
-        //         if (result.status === 'fulfilled') {
-        //             console.log(result.value.data, index === 0 ? "Sanction letter generated" : "Email sent");
-        //         } else {
-        //             console.error("Error in API call:", result.reason);
-        //         }
-        //     });
-        // });
 
         axios.get(sanctionLetterUrl)
             .then(sanctionResponse => {
@@ -74,10 +72,11 @@ function generatesanctionletter(cid)
                 return axios.get(emailSanctionLetterUrl);
             })
             .then(emailResponse => {
-                console.log(emailResponse.data, "Email sent");navigate(0);
+                console.log(emailResponse.data, "Email sent");   //setFilteredData(data);
+                 navigate(0);
             })
             .catch(error => {
-                console.error("Error in generating sanction letter or sending email:", error);
+                console.error("Error in generating sanction letter or sending email  or already generated:", error);
             });
 };
 
@@ -131,34 +130,54 @@ function generatesanctionletter(cid)
         {
             name:"Actions",
             cell: (row) => (
-                <>
+            <>
                 {row.enquiry?.enquiryStatus === "Pending Sanction" && (
-                    <button className='set-cm-button' onClick={() => SetLoanDetails(row.cid)}>Set Loan Details</button>
+                    <button className='set-cm-button' onClick={() => handleSetLoanDetails(row.cid)}>Set Loan Details</button>
                 )}
                 {row.enquiry?.enquiryStatus === "Sanction Process In Progress" && (
                     <button  className='set-cm-button' onClick={() => calculateEmi(row.cid)}>Calculate EMI</button>
                 )}
                {
-    (row.enquiry?.enquiryStatus === "EMI calculated" || row.enquiry?.enquiryStatus === "Sanction Letter Generated") && (
-        <button className='set-cm-button' onClick={() => generatesanctionletter(row.cid)}>Generate Sanction Letter and Send Email</button>
-    )
-}
+               (row.enquiry?.enquiryStatus === "EMI calculated" || row.enquiry?.enquiryStatus === "Sanction Letter Generated") && (
+                <button className='set-cm-button' onClick={() => generatesanctionletter(row.cid)}>Generate Sanction Letter and Send Email</button>
+               )
+               }
             </>
             )
         }
     ]
   return (
     <div>
-
+    {(showForm)? (<SetLoanDetails cid={selectedCid} setShowForm={setShowForm} /> ):(<div>
         <div className='m-3'>
-            
+            {
+                <div style={{ marginBottom: '20px' }} className='float-start'>
+                <label className='m-3'>Filter By:</label>&nbsp;&nbsp;
+                    <select value={filter} onChange={handleFilterChange} className='m1-auto'>
+                        <option disabled>Filter by</option>
+                        <option value="Pending Sanction">Pending Sanction Details</option>
+                        <option value="Sanction Process In Progress">Pending EMI Calculation</option>
+                        <option value="EMI calculated">Pending Sanction letter generation</option>
+                        <option value="">Show all</option>
+                    </select>
+            </div>
+
+            } 
             
         </div>
-        <div className='col col-12 mt-5'>
-        <DataTable columns={cols} data={data} pagination fixedHeader> </DataTable>
+
+        <div className=' mt-3 m-3' style={{minHeight:'94vh'}}>
+        <DataTable columns={cols} data={filteredData
+             } pagination fixedHeader> </DataTable>
+
         </div>
+        
     </div>
-  )
+    
+    )}
+</div>
+);
 }
+
 
 export default Cm

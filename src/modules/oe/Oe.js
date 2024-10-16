@@ -43,7 +43,6 @@ function Oe() {
         axios.get(`http://localhost:9092/oe/getCustomerDetails/${index}`)
         .then(response=>{setCustomer(response.data)})
         .catch(error=>alert("Something went wrong"));
-        
     }
 
     const callCalculateCibil = (index) =>{
@@ -112,12 +111,14 @@ function Oe() {
   return (
     
       
-       <div className='col-12 mt-4 outer-container' style={{minHeight:'100vh'}}>
+       <div className='col-12 mt-4 outer-container' style={{minHeight:'94vh'}}>
             
       <div>
         {
           
-            (showForm)?<context.Provider value={customer}><VerifyForm onVerificationComplete={handleVerificationComplete}/></context.Provider>:(<div><div style={{ marginBottom: '20px' }} className='float-start'>
+            (showForm)?<context.Provider value={customer}><VerifyForm onVerificationComplete={handleVerificationComplete}/></context.Provider>:(
+            <div>
+                <div style={{ marginBottom: '20px' }} className='float-start'>
                 <label className='m-3'>Filter By:</label>&nbsp;&nbsp;
                     <select value={filter} onChange={handleFilterChange} className='m1-auto'>
                         <option disabled>Filter by</option>
