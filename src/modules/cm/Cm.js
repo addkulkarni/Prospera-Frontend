@@ -165,9 +165,11 @@ function generatesanctionletter(cid)
             } 
             
         </div>
+
         <div className=' mt-3 m-3' style={{minHeight:'94vh'}}>
         <DataTable columns={cols} data={filteredData
              } pagination fixedHeader> </DataTable>
+
         </div>
         
     </div>
