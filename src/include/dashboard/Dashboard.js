@@ -5,6 +5,7 @@ import Header from '../header/Header';
 import Oe from '../../modules/oe/Oe';
 import Ah from '../../modules/ah/Ah';
 import Cm from '../../modules/cm/Cm'
+import SetLoanDetails from '../../modules/cm/setloandetails/SetLoanDetails';
 function Dashboard() {
   return (
     <div>
@@ -14,7 +15,9 @@ function Dashboard() {
           <Routes>
                 <Route path="oe" element={<Oe/>}/>
                 <Route path="ah" element={<Ah/>}/>
-                <Route path="cm" element={<Cm/>}/>
+                <Route path="cm" element={<Cm />}/>
+                        {/* <Route path="cm/setloandetails/:id" element={<SetLoanDetails/>} /> */}
+                {/* </Route> */}
             </Routes>
           </div>
      
