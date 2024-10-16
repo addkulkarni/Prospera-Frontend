@@ -3,7 +3,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import validator from '../../../validation/Validator';
 function Register() 
 {
   const { enquiryId} = useParams();
@@ -63,16 +62,16 @@ function Register()
         <input type="text" {...register('lastName')}/></div>
         
         <div className='form-element1'><label>Age: </label>
-        <input type="number" {...register('age',validator.age)}/></div>
+        <input type="number" {...register('age')}/></div>
       
        <div className='form-element1'><label>Email: </label>
-       <input type="email" {...register('email',validator.email)}/></div>
+       <input type="email" {...register('email')}/></div>
 
        <div className='form-element1'><label>Date Of Birth: </label>
        <input type="date" {...register('dob')}/></div>
        
        <div className='form-element1'><label>Mobile number: </label>
-       <input type="tel" {...register('mobileNo',validator.mobile)}/></div>
+       <input type="tel" {...register('mobileNo')}/></div>
        <div className='form-element1'><label>Gender: </label>
         <select {...register('gender')} defaultValue="">
           <option value="" disabled>---Select---</option>
@@ -81,10 +80,10 @@ function Register()
         </select></div>
 
         <div className='form-element1'><label>PAN card number: </label>
-        <input type="text" {...register('pancardNo',validator.pan)}/></div>
+        <input type="text" {...register('pancardNo')}/></div>
         
         <div className='form-element1'><label>Aadhar card number: </label>
-        <input type="text" {...register('adharcardNo',validator.adhar)}/></div>
+        <input type="text" {...register('adharcardNo')}/></div>
         <button type="submit" className='submit-button1'>
               Submit Form
             </button>

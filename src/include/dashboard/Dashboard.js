@@ -5,7 +5,7 @@ import Header from '../header/Header';
 import Oe from '../../modules/oe/Oe';
 import Ah from '../../modules/ah/Ah';
 import Cm from '../../modules/cm/Cm';
-import RE from '../../template/re/RE';
+import RE from '../../modules/re/RE';
 function Dashboard() {
   return (
     <div>

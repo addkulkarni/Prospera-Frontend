@@ -3,8 +3,7 @@ import './App.css';
 import Body from './include/body/Body';
 import Login from './include/login/Login';
 import Dashboard from './include/dashboard/Dashboard';
-import './template/re/registration/reg'
-import Register from './template/re/registration/Register';
+import Register from './modules/re/registration/Register';
 function App() {
   return (
     <div className="App">
