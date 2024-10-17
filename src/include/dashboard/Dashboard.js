@@ -7,14 +7,13 @@ import Ah from '../../modules/ah/Ah';
 
 import Cm from '../../modules/cm/Cm';
 import RE from '../../modules/re/RE';
-
-
-import SetLoanDetails from '../../modules/cm/setloandetails/SetLoanDetails';
+import Customer from '../../modules/customer/Customer';
 
 function Dashboard() {
   return (
     <div>
         <Header></Header>
+        
         
           <div className='col-12 oediv'>
           <Routes>
@@ -22,6 +21,7 @@ function Dashboard() {
                 <Route path="re" element={<RE/>}/>
                 <Route path="ah" element={<Ah/>}/>
                 <Route path="cm" element={<Cm />}/>
+                <Route path="customer" element={<Customer />}/>
                         {/* <Route path="cm/setloandetails/:id" element={<SetLoanDetails/>} /> */}
                 {/* </Route> */}
             </Routes>
