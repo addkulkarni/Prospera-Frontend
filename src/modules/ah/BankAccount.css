@@ -15,12 +15,3 @@
     padding: 20px; /* Added padding for inner spacing */
   }
 
-.bi{
-    background:transparent;
-    color:'white';
-    size: 20px;
-    border:'none';
-    width:10%;;
-    float: left;
-    margin-bottom: 5px;
-}
