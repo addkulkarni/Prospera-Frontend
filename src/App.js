@@ -9,7 +9,10 @@ import Register from './modules/re/registration/Register';
 
 function App() {
   return (
-    <div className="App">
+    <div >
+      <div className="App">
+
+      
       <BrowserRouter>
         
         <Routes>
@@ -24,7 +27,7 @@ function App() {
         
         
       </BrowserRouter>
-      
+      </div>
       
       
     </div>

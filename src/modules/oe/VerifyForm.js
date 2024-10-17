@@ -214,7 +214,6 @@ function VerifyForm({ onVerificationComplete }) {
       <h4>Document Details</h4>
       <div className='form-element'>
         <label>Adhar Card</label>
- 
         <img src={'data:image/jpeg;base64,'+doc.adhar} />
       </div>
 

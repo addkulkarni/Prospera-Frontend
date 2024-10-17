@@ -132,14 +132,14 @@ const submitForm = async (data) => {
 
 
   return (
-    <div style={{height:'500px', display:'block'}} className="reg-form-container">
+    <div style={{height:'auto', display:'block',backgroundSize:''}} className="reg-form-container">
       
-      <form className="customer-reg-form" onSubmit={handleSubmit(submitForm)}>
+      <form className="reg-form" onSubmit={handleSubmit(submitForm)}>
       <h5 className='subheading1'>{statement}</h5>
       {/* <input hidden {...register('enquiry.enquiryID')}/> */}
       {step===1 && (
       <div className='step'>
-        <h4>Personal Details</h4>
+        <h5 className='subheading'>Personal Details</h5>
         <div className='form-element1'>
         <input type="number" hidden {...register('enquiry.enquiryID')}/></div>
 
@@ -181,7 +181,7 @@ const submitForm = async (data) => {
 
       {step===2 && (
         <div className='step'>
-          <h2>Bank Details</h2>
+          <h5 className='subheading'>Bank Details</h5>
        <div className='reg-form-element'><label>Bank Name:</label>
        <input type='text' {...register('bank.bankName')}/></div>
 
@@ -201,7 +201,7 @@ const submitForm = async (data) => {
 
       {step===3 && (
         <div className='step'>
-          <h2>Employment Details</h2>
+          <h5 className='subheading'>Employment Details</h5>
           <div className='reg-form-element'><label>Organization Name:</label>
           <input type='text' {...register('emp.organization')}/></div>
 
@@ -217,7 +217,7 @@ const submitForm = async (data) => {
         
       {step===4 && (
         <div className='step'>
-          <h2>Permanent Address</h2>
+          <h5 className='subheading'>Permanent Address</h5>
         <div className='reg-form-element'><label>Area Name: </label><span>{errors.amount&&errors.amount.message}</span>
         <input type="text" {...register('padr.areaName')}/></div>
         
@@ -243,7 +243,7 @@ const submitForm = async (data) => {
 
      {step===5 && (
         <div className='step'>
-          <h2>Local Address</h2>
+          <h5 className='subheading'>Local Address</h5>
         <div className='reg-form-element'><label>Area Name: </label><span>{errors.amount&&errors.amount.message}</span>
         <input type="text" {...register('ladr.areaName')}/></div>
         
@@ -260,7 +260,7 @@ const submitForm = async (data) => {
         <div className='reg-form-element'><label>State:</label>
         <input type='text' {...register('ladr.state')}/></div>
 
-        <div className='form-element'><label>Country:</label>
+        <div className='reg-form-element'><label>Country:</label>
         <input type='text' {...register('ladr.country')}/></div>
 
     
@@ -271,7 +271,7 @@ const submitForm = async (data) => {
 
       {step===6 &&(
       <div className='step'>
-        <h2>Upload Document</h2>
+        <h5 className='subheading'>Upload Document</h5>
         <div className='reg-form-element'><label>AadharCard: </label>
         <input type="file" {...register('doc.adhar')} /></div>
 
@@ -294,12 +294,12 @@ const submitForm = async (data) => {
 
         <div className='form-navigation1'>
           {step > 1 && (
-            <button type="button" className='nav-button1' onClick={prevStep}>
+            <button type="button" className='nav-button1-previous' onClick={prevStep}>
               Previous
             </button>
           )}
           {step < 6 && (
-            <button type="button" className='nav-button1' onClick={nextStep} >
+            <button type="button" className='nav-button1-next' onClick={nextStep} >
               Next
             </button>
           )}

@@ -8,6 +8,9 @@ import Header from '../header/Header';
 import Cm from '../../modules/cm/Cm';
 import RE from '../../modules/re/RE';
 
+import Customer from '../../modules/customer/Customer';
+
+
 
 import Registration from '../../modules/re/registration/Registration';
 import ViewLedger from '../../modules/ah/ViewLedger';
@@ -15,26 +18,35 @@ import BankAccount from '../../modules/ah/BankAccount';
 import SetLoanDetails from '../../modules/cm/setloandetails/SetLoanDetails';
 import Admin from '../../modules/admin/Admin';
 
+
 function Dashboard() {
   return (
-    <div className='dashboard-container'>
+    <div>
         <Header></Header>
         
-          <div className='col-12 dashboard-body'>
-          <Routes>
+
+
+        
+          <div className='col-12 oediv'>
+
+            <div className='col-12 dashboard-body'>
+
+              <Routes>
+
                 <Route path="oe" element={<Oe/>}/>
                 <Route path="re" element={<RE/>}/>
                 <Route path="ah" element={<Ah/>}/>
                 <Route path="cm" element={<Cm />}/>
-
-                <Route path='admin' element={<Admin/>}/>
+                <Route path="customer" element={<Customer />}/><Route path='admin' element={<Admin/>}/>
                 <Route path="/ah/setbankaccount/:cid" element={<BankAccount/>}></Route>
                 <Route path="/re/:enquiryId" element={<Registration/>}></Route>
                 <Route path="/cm/setloandetails/:cid" element={<SetLoanDetails/>}></Route>
                 <Route path="/ah/:cid" element={<ViewLedger/>}></Route>
 
-            </Routes>
+
+              </Routes>
            
+            </div>
           </div>
      
         <Footer className="footer"></Footer>

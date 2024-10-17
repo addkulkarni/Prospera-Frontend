@@ -1,5 +1,11 @@
 /* Main container for the body */
 .div-container {
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 15%, rgba(72,197,183,1) 63%, rgba(35,59,94,1) 100%);
+  background-repeat: no-repeat; 
+  background-size: cover;
+  font-size: 14px;
+  
     display: flex;
     justify-content: space-between; /* Space between the form and the heading */
     align-items: center;           /* Center vertically */
