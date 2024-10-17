@@ -6,14 +6,12 @@ import { context } from './Oe';
 import { TailSpin } from 'react-loader-spinner';
 import Oe from './Oe';
 import './VerifyForm.css';
-import { set } from 'date-fns';
 function VerifyForm({ onVerificationComplete }) {
     const customer = useContext(context);
     const{register,handleSubmit,setValue}=useForm();
     const[loading,setLoading]=useState(false);
     const navigate = useNavigate(); 
     const [doc,setDoc]=useState({});
-    console.log(customer)
     const onSubmit = (data) => {
         {
             setLoading(true);
@@ -40,7 +38,6 @@ function VerifyForm({ onVerificationComplete }) {
             setValue(fields,customer[fields])
              if(fields==='doc') setDoc(customer[fields]);
           }
-       
 
         
       },[setValue,customer])
@@ -63,158 +60,158 @@ function VerifyForm({ onVerificationComplete }) {
 
       <div className='form-element'>
         <label>First Name</label>
-        <input type="text" disabled {...register('firstName')} />
+        <input type="text" disabled {...register('firstName')} style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Last Name</label>
-        <input type="text" disabled {...register('lastName')} />
+        <input type="text" disabled {...register('lastName')} style={{width:'270px'}} />
       </div>
 
       <div className='form-element'>
         <label>Age</label>
-        <input type="number" disabled {...register('age')} />
+        <input type="number" disabled {...register('age')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Gender</label>
-        <input type="text" disabled {...register('gender')} />
+        <input type="text" disabled {...register('gender')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Date of Birth</label>
-        <input type="text" disabled {...register('dob')} />
+        <input type="text" disabled {...register('dob')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Email</label>
-        <input type="email" disabled {...register('email')} />
+        <input type="email" disabled {...register('email')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Mobile No</label>
-        <input type="text" disabled {...register('mobileNo')} />
+        <input type="text" disabled {...register('mobileNo')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Aadhar Card No</label>
-        <input type="text" disabled {...register('adharcardNo')} />
+        <input type="text" disabled {...register('adharcardNo')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>PAN Card No</label>
-        <input type="text" disabled {...register('pancardNo')} />
+        <input type="text" disabled {...register('pancardNo')}  style={{width:'270px'}}/>
       </div>
 
       <h4>Bank Details</h4>
       <div className='form-element'>
         <label>Bank Name</label>
-        <input type="text" disabled {...register('bank.bankName')} />
+        <input type="text" disabled {...register('bank.bankName')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Branch</label>
-        <input type="text" disabled {...register('bank.branch')} />
+        <input type="text" disabled {...register('bank.branch')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>IFSC Code</label>
-        <input type="text" disabled {...register('bank.ifscCode')} />
+        <input type="text" disabled {...register('bank.ifscCode')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Account No</label>
-        <input type="text" disabled {...register('bank.accNo')} />
+        <input type="text" disabled {...register('bank.accNo')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Account Type</label>
-        <input type="text" disabled {...register('bank.accType')} />
+        <input type="text" disabled {...register('bank.accType')}  style={{width:'270px'}}/>
       </div>
 
       <h4>Employment Details</h4>
       <div className='form-element'>
         <label>Organization</label>
-        <input type="text" disabled {...register('emp.organization')} />
+        <input type="text" disabled {...register('emp.organization')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Type</label>
-        <input type="text" disabled {...register('emp.type')} />
+        <input type="text" disabled {...register('emp.type')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Status</label>
-        <input type="text" disabled {...register('emp.status')} />
+        <input type="text" disabled {...register('emp.status')}  style={{width:'270px'}}/>
       </div>
 
       <h4>Address Details</h4>
       <h5>Permanent Address</h5><br/>
       <div className='form-element'>
         <label>Area</label>
-        <input type="text" disabled {...register('padr.areaName')} />
+        <input type="text" disabled {...register('padr.areaName')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>City</label>
-        <input type="text" disabled {...register('padr.cityName')} />
+        <input type="text" disabled {...register('padr.cityName')} style={{width:'270px'}} />
       </div>
 
       <div className='form-element'>
         <label>District</label>
-        <input type="text" disabled {...register('padr.district')} />
+        <input type="text" disabled {...register('padr.district')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Pincode</label>
-        <input type="text" disabled {...register('padr.pincode')} />
+        <input type="text" disabled {...register('padr.pincode')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>State</label>
-        <input type="text" disabled {...register('padr.state')} />
+        <input type="text" disabled {...register('padr.state')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Country</label>
-        <input type="text" disabled {...register('padr.country')} />
+        <input type="text" disabled {...register('padr.country')} style={{width:'270px'}} />
       </div>
 
       <h5>Local Address</h5><br/>
       <div className='form-element'>
         <label>Area</label>
-        <input type="text" disabled {...register('ladr.areaName')} />
+        <input type="text" disabled {...register('ladr.areaName')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>City</label>
-        <input type="text" disabled {...register('ladr.cityName')} />
+        <input type="text" disabled {...register('ladr.cityName')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>District</label>
-        <input type="text" disabled {...register('ladr.district')} />
+        <input type="text" disabled {...register('ladr.district')} style={{width:'270px'}} />
       </div>
 
       <div className='form-element'>
         <label>Pincode</label>
-        <input type="text" disabled {...register('ladr.pincode')} />
+        <input type="text" disabled {...register('ladr.pincode')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>State</label>
-        <input type="text" disabled {...register('ladr.state')} />
+        <input type="text" disabled {...register('ladr.state')}  style={{width:'270px'}}/>
       </div>
 
       <div className='form-element'>
         <label>Country</label>
-        <input type="text" disabled {...register('ladr.country')} />
+        <input type="text" disabled {...register('ladr.country')}  style={{width:'270px'}}/>
       </div>
 
       <h4>Document Details</h4>
       <div className='form-element'>
         <label>Adhar Card</label>
-        <img src={'data:image/jpeg;base64,'+doc.adhar} />
+        <img src={'data:image/jpeg;base64,'+doc.adhar}/>
       </div>
 
       <div className='form-element'>
