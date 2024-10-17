@@ -209,7 +209,7 @@ function VerifyForm({ onVerificationComplete }) {
       <h4>Document Details</h4>
       <div className='form-element'>
         <label>Adhar Card</label>
-        <input type="text" disabled {...register('doc.adhar')} readOnly />
+        <img src={customer.doc.adhar} />
       </div>
 
       <div className='form-element'>

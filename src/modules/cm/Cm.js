@@ -133,7 +133,8 @@ function generatesanctionletter(cid)
   return (
             <div>
             {
-                (showForm)? (<SetLoanDetails cid={selectedCid} setShowForm={setShowForm} /> ):(
+                (showForm)? (<SetLoanDetails cid={selectedCid} setShowForm={setShowForm} /> ):
+                (
                 <div>
                     <div className='m-3'>
                     {
@@ -149,18 +150,9 @@ function generatesanctionletter(cid)
                         </div>
                     } 
                     </div>
-                </div>
-
-            } 
-            
-        </div>
-        
-
                     <div className=' mt-3 m-3' style={{minHeight:'94vh'}}>
                         <DataTable columns={cols} data={filteredData} pagination fixedHeader> </DataTable>
                     </div>
-
-        
                 </div>)
             } 
             </div>  
