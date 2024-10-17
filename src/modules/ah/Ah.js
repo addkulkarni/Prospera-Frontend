@@ -34,7 +34,7 @@ function Ah() {
 
     const openShowForm = (cid)=>{
         setCustomerid(cid);
-        setShowForm(true);  
+        navigate(`/dashboard/ah/setbankaccount/${cid}`);
     }
 
     const disburseAmount = (cid)=>{
@@ -52,7 +52,8 @@ function Ah() {
     }
 
     const showLedger = (cid)=>{
-        axios.get('')
+        console.log(cid);
+        navigate(`/dashboard/ah/${cid}`)
     }
 
     const cols=[
@@ -94,10 +95,10 @@ function Ah() {
                 <div>
                     {
                         <div>
-                            <button className='m-1' hidden={row.enquiry.enquiryStatus != "Forwarded to Account Head"||row.disbursement.disbursementAccountNo!=0} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px'}} onClick={() => openShowForm(row.cid)}>Set recipient account</button>
-                            <button className='m-1' hidden={row.enquiry.enquiryStatus != "Forwarded to Account Head"||row.disbursement.disbursementAccountNo==0} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px'}} onClick={()=> disburseAmount(row.cid)}>Disburse Amount</button>
-                            <button className='m-1' hidden={row.enquiry.enquiryStatus != "Loan Disbursed"} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px'}} onClick={()=> createLedger(row.cid)}>Create Ledger</button>
-                            <button className='m-1' hidden={row.enquiry.enquiryStatus != "Ledger Created"} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px'}} onClick={()=> showLedger(row.cid)}>Show Ledger</button>
+                            <button className='m-1' hidden={row.enquiry.enquiryStatus != "Forwarded to Account Head"||row.disbursement.disbursementAccountNo!=0} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'160px'}} onClick={() => openShowForm(row.cid)}>Set recipient account</button>
+                            <button className='m-1' hidden={row.enquiry.enquiryStatus != "Forwarded to Account Head"||row.disbursement.disbursementAccountNo==0} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'160px'}} onClick={()=> disburseAmount(row.cid)}>Disburse Amount</button>
+                            <button className='m-1' hidden={row.enquiry.enquiryStatus != "Loan Disbursed"} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'160px'}} onClick={()=> createLedger(row.cid)}>Create Ledger</button>
+                            <button className='m-1' hidden={row.enquiry.enquiryStatus != "Ledger Created"} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'160px'}} onClick={()=> showLedger(row.cid)}>Show Ledger</button>
                         </div>
                     }    
                 </div>
@@ -115,13 +116,14 @@ function Ah() {
     <div className='ah-component' style={{minHeight:'94vh'}}>
     {
 
-        (showForm)?<BankAccount cid={customerid}/>:<div className='mt-3 m-3'><div style={{ marginBottom: '20px' }} className='float-start'>
+        <div className='mt-3 m-3'><div style={{ marginBottom: '20px' }} className='float-start'>
         <label className='m-3'>Filter By:</label>&nbsp;&nbsp;
             <select className='m1-auto' value={filter} onChange={handleFilterChange}>
                 <option disabled>Filter by</option>
                 <option value="Forwarded to Account Head">Pending Recipient's Bank Account Number</option>
-                <option value="Hello">Pending Disbursement</option>
-                <option value="Loan Disbursed">Pending Ledger Creating</option>
+                <option value="Forwarded to Account Head">Pending Disbursement</option>
+                <option value="Loan Disbursed">Pending Ledger Creation</option>
+                <option value="Ledger Created">Ledger Created</option>
                 <option value="">Show all</option>
             </select>
             </div>

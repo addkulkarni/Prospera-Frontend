@@ -40,8 +40,9 @@ function Cm() {
         }
     }
     const handleSetLoanDetails = (cid) => {
-        setSelectedCid(cid); // Set the selected CID
-        setShowForm(true); // Show the form
+        // setSelectedCid(cid); // Set the selected CID
+        // setShowForm(true); // Show the form
+        navigate(`/dashboard/cm/setloandetails/${cid}`);
     };
     
 
@@ -82,11 +83,7 @@ function generatesanctionletter(cid)
 
    
  const cols=[
-        {
-        name:"Customer ID",
-        selector:row=>row.cid,
-        sortable:true
-        },
+        
         {
             name:"First Name",
             selector:row=>row.firstName,
@@ -112,34 +109,21 @@ function generatesanctionletter(cid)
             selector:row=>row.enquiry?.cibil?.cibilscore||'NA',
             sortable:true
         },
-        {
-            name:"Bank Name",
-            selector:row=>row.bank?.bankName||'NA',
-            sortable:true
-        },
-        {
-            name:"Bank IFSC code",
-            selector:row=>row.bank?.ifscCode||'NA',
-            sortable:true
-        },
-        {
-            name:"Bank Account No",
-            selector:row=>row.bank?.accNo||'NA',
-            sortable:true
-        },
+        
+        
         {
             name:"Actions",
             cell: (row) => (
             <>
                 {row.enquiry?.enquiryStatus === "Pending Sanction" && (
-                    <button className='set-cm-button' onClick={() => handleSetLoanDetails(row.cid)}>Set Loan Details</button>
+                    <button className='set-cm-button' onClick={() => handleSetLoanDetails(row.cid)} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'170px'}}>Set Loan Details</button>
                 )}
                 {row.enquiry?.enquiryStatus === "Sanction Process In Progress" && (
-                    <button  className='set-cm-button' onClick={() => calculateEmi(row.cid)}>Calculate EMI</button>
+                    <button  className='set-cm-button' onClick={() => calculateEmi(row.cid)} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'170px'}}>Calculate EMI</button>
                 )}
                {
                (row.enquiry?.enquiryStatus === "EMI calculated" || row.enquiry?.enquiryStatus === "Sanction Letter Generated") && (
-                <button className='set-cm-button' onClick={() => generatesanctionletter(row.cid)}>Generate Sanction Letter and Send Email</button>
+                <button className='set-cm-button' onClick={() => generatesanctionletter(row.cid)} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'170px'}}>Generate and Email SL</button>
                )
                }
             </>
