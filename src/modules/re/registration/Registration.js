@@ -1,11 +1,11 @@
 
 import axios from 'axios';
+import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import validator from '../../../validation/Validator';
 import './Registration.css';
-import { format } from 'date-fns';
 
 
 function Registration() {

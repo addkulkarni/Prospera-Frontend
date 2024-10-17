@@ -6,11 +6,14 @@ import { context } from './Oe';
 import { TailSpin } from 'react-loader-spinner';
 import Oe from './Oe';
 import './VerifyForm.css';
+import { set } from 'date-fns';
 function VerifyForm({ onVerificationComplete }) {
     const customer = useContext(context);
     const{register,handleSubmit,setValue}=useForm();
     const[loading,setLoading]=useState(false);
     const navigate = useNavigate(); 
+    const [doc,setDoc]=useState({});
+    console.log(customer)
     const onSubmit = (data) => {
         {
             setLoading(true);
@@ -35,7 +38,9 @@ function VerifyForm({ onVerificationComplete }) {
           for(let fields in customer)
           {
             setValue(fields,customer[fields])
+             if(fields==='doc') setDoc(customer[fields]);
           }
+       
 
         
       },[setValue,customer])
@@ -209,32 +214,32 @@ function VerifyForm({ onVerificationComplete }) {
       <h4>Document Details</h4>
       <div className='form-element'>
         <label>Adhar Card</label>
-        <img src={customer.doc.adhar} />
+        <img src={'data:image/jpeg;base64,'+doc.adhar} />
       </div>
 
       <div className='form-element'>
         <label>PAN Card</label>
-        <input type="text" disabled {...register('doc.pan')} readOnly />
+        <img src={'data:image/jpeg;base64,'+doc.pan} />
       </div>
 
       <div className='form-element'>
         <label>Photo</label>
-        <input type="text" disabled {...register('doc.photo')} readOnly />
+        <img src={'data:image/jpeg;base64,'+doc.photo} />
       </div>
 
       <div className='form-element'>
         <label>Signature</label>
-        <input type="text" disabled {...register('doc.sign')} readOnly />
+        <img src={'data:image/jpeg;base64,'+doc.sign} />
       </div>
 
       <div className='form-element'>
         <label>Income Certificate</label>
-        <input type="text" disabled {...register('doc.incomeCertificate')} readOnly />
+        <img src={'data:image/jpeg;base64,'+doc.incomeCertificate} />
       </div>
 
       <div className='form-element'>
         <label>Salary Slip</label>
-        <input type="text" disabled {...register('doc.salarySlip')} readOnly />
+        <img src={'data:image/jpeg;base64,'+doc.salarySlip} />
       </div>
 
         {
