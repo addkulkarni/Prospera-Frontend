@@ -17,7 +17,7 @@ function Navbar(){
           </div>
           <div className='navbar-box-right'>
             <ul className='navbar-list'>
-              <li className="login-button"><Link to={'/login'}>Login</Link></li>
+              <li className="login-link"><Link to={'/login'}>Login</Link></li>
             </ul>
           </div>
           

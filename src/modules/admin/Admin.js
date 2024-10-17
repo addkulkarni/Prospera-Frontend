@@ -66,17 +66,7 @@ import axios from 'axios';
     <form className='admin-form' onSubmit={handleSubmit}>
         <h5 className='subheading'>{statement}</h5>
 
-        <div className='form-row'>
-          <div className='form-element'>
-         
-            <span className="error"></span>
-            <input type="text" placeholder="Enter Username" {...register('username')} />
-          </div>
-          <div className='form-element'>
-          <span className="error"></span>
-            <input type="text" placeholder="Enter Password"{...register('password')} />
-          </div>
-        </div>
+        
 
         <div className='form-row'>
           <div className='form-element'>
@@ -87,6 +77,17 @@ import axios from 'axios';
           <div className='form-element'>
           <span className="error"></span>
             <input type="text" placeholder="Enter Last Name"{...register('lastname')} />
+          </div>
+        </div>
+        <div className='form-row'>
+          <div className='form-element'>
+         
+            <span className="error"></span>
+            <input type="text" placeholder="Enter Username" {...register('username')} />
+          </div>
+          <div className='form-element'>
+          <span className="error"></span>
+            <input type="password" placeholder="Enter Password"{...register('password')} />
           </div>
         </div>
 
@@ -100,18 +101,19 @@ import axios from 'axios';
           <span className="error"></span>
             <select {...register('userType')} defaultValue="">
               <option value="" disabled>Select UserType</option>
-              <option value="Oe">oe</option>
-              <option value="Re">re</option>
-              <option value="Cm">cm</option>
-              <option value="Ah">ah</option>
-              <option value="Admin">admin</option>
+              <option value="OE">OE</option>
+              <option value="RE">RE</option>
+              <option value="CM">CM</option>
+              <option value="AH">AH</option>
+              <option value="Admin">Admin</option>
             </select>
           </div>
         </div>
+        <div className='form-row'>
         <div className='form-element'>
         <span className="error"></span>
         <input type="file"  accept="image/*" {...register('photo')}   onChange={handleImageChange}/></div>
-
+        </div>
         <div className='form-navigation'>
           <button type="submit" className='submit-button'>Submit</button>
         </div>

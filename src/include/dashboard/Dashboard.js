@@ -17,10 +17,10 @@ import Admin from '../../modules/admin/Admin';
 
 function Dashboard() {
   return (
-    <div className='dashboard-container'>
+    <div>
         <Header></Header>
         
-          <div className='col-12 dashboard-body'>
+          <div>
           <Routes>
                 <Route path="oe" element={<Oe/>}/>
                 <Route path="re" element={<RE/>}/>

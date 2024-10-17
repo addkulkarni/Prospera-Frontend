@@ -27,16 +27,19 @@ function SetLoanDetails() {
      <div className='setLoan-form-container'>
     
         <form className='setLoan-form' onSubmit={handleSubmit(submitForm)}>
-          <h2 className='setLoan-title'>Set LoanDetails</h2>
-          <div >
+          <h2 className='setLoan-title'>Set Loan Details</h2>
+          <div className='set-form-element'>
+          
             <input className='setLoan-field' type='number' placeholder='Loanamount' {...register('loanamount')}/>
             <i className="bi bi-cash icon"></i>
           </div>
-          <div >
+          <div  className='set-form-element'>
+         
             <input className='setLoan-field' type='number' placeholder='InterestRate (%)' {...register('interestRate')}/>
             <i className="bi bi-percent icon"></i>
           </div>
-          <div >
+          <div className='set-form-element' >
+          
             <input className='setLoan-field' type='number' placeholder='Tenure (Months)' {...register('tenure')}/>
             <i className="bi bi-calendar icon"></i>
           </div>
