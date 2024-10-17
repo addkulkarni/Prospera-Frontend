@@ -10,6 +10,7 @@ import RE from '../../modules/re/RE';
 
 
 import SetLoanDetails from '../../modules/cm/setloandetails/SetLoanDetails';
+import Admin from '../../modules/admin/Admin';
 
 function Dashboard() {
   return (
@@ -22,6 +23,7 @@ function Dashboard() {
                 <Route path="re" element={<RE/>}/>
                 <Route path="ah" element={<Ah/>}/>
                 <Route path="cm" element={<Cm />}/>
+                <Route path='admin' element={<Admin/>}/>
                         {/* <Route path="cm/setloandetails/:id" element={<SetLoanDetails/>} /> */}
                 {/* </Route> */}
             </Routes>
