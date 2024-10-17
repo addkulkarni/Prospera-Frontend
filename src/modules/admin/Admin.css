@@ -1,0 +1,90 @@
+/* General form styling */
+.admin-form-container {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Increased gap for better spacing */
+    margin-bottom: 10px;
+  }
+  
+  .subheading {
+    text-align: center;
+    color: #233b5e;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+  
+  /* Form row and element styling */
+  .form-row {
+    display: flex;
+    gap: 10px; /* Slightly increased gap between columns */
+  }
+  
+  .form-element {
+    flex: 1;
+    width:200px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-element input,
+  .form-element select {
+    padding: 8px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .form-element input::placeholder,
+  .form-element select::placeholder {
+    font-size: 13px;
+  }
+  
+  .form-element input:focus,
+  .form-element select:focus {
+    border-color: #233b5e;
+    outline: none;
+  }
+  
+  /* Error message styling */
+  .error {
+    color: red;
+    font-size: 12px;
+    text-align: left;
+    height: 14px; /* Fixed height to prevent shifting */
+    margin-top: 2px;
+  }
+  
+  /* Button styling */
+  .submit-button {
+    background-color: #233b5e;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 90%;
+    font-size: 15px;
+  }
+  
+  .submit-button:hover {
+    background-color: #1a2d4b;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 520px) {
+    .form-row {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+  

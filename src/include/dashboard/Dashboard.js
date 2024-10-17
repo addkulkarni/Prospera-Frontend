@@ -13,6 +13,7 @@ import Registration from '../../modules/re/registration/Registration';
 import ViewLedger from '../../modules/ah/ViewLedger';
 import BankAccount from '../../modules/ah/BankAccount';
 import SetLoanDetails from '../../modules/cm/setloandetails/SetLoanDetails';
+import Admin from '../../modules/admin/Admin';
 
 function Dashboard() {
   return (
@@ -25,10 +26,13 @@ function Dashboard() {
                 <Route path="re" element={<RE/>}/>
                 <Route path="ah" element={<Ah/>}/>
                 <Route path="cm" element={<Cm />}/>
+
+                <Route path='admin' element={<Admin/>}/>
                 <Route path="/ah/setbankaccount/:cid" element={<BankAccount/>}></Route>
                 <Route path="/re/:enquiryId" element={<Registration/>}></Route>
                 <Route path="/cm/setloandetails/:cid" element={<SetLoanDetails/>}></Route>
                 <Route path="/ah/:cid" element={<ViewLedger/>}></Route>
+
             </Routes>
            
           </div>
