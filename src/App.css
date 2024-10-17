@@ -1,10 +1,11 @@
 .App {
   text-align: center;
   background: rgb(255,255,255);
-  background: linear-gradient(180deg, rgba(255,255,255,1) 15%, rgba(72,197,183,1) 63%, rgba(35,59,94,1) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 7%, rgba(72,197,183,1) 30%, rgba(35,59,94,1) 98%);
   background-repeat: no-repeat; 
+  background-size: cover;
   font-size: 14px;
-  height: 110vh; 
+  
   
 }
 

@@ -21,9 +21,10 @@ import Admin from '../../modules/admin/Admin';
 
 function Dashboard() {
   return (
-    <div className='dashboard-container'>
+    <div>
         <Header></Header>
         
+
 
         
           <div className='col-12 oediv'>
@@ -31,6 +32,7 @@ function Dashboard() {
             <div className='col-12 dashboard-body'>
 
               <Routes>
+
                 <Route path="oe" element={<Oe/>}/>
                 <Route path="re" element={<RE/>}/>
                 <Route path="ah" element={<Ah/>}/>
