@@ -23,6 +23,7 @@
 .navbar-box-right {
   display: flex;
   align-items: center;
+  
 }
 
 .user-icon {
@@ -81,4 +82,17 @@
 .logout-item a:hover {
   color: #c9302c;
   text-decoration: underline;
+}
+
+.main-dropdown-menu{
+  width:50px;
+  height: auto;
+
+  color: #ddd;
+}
+
+.ulist{
+  list-style-type: none;
+  border: 2px groove;
+
 }

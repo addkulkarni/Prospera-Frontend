@@ -4,6 +4,7 @@ import Body from './include/body/Body';
 import Dashboard from './include/dashboard/Dashboard';
 import Login from './include/login/Login';
 
+
 import Register from './modules/re/registration/Register';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
           <Route path="/login" element={<Login/>}></Route>
 
           <Route path="/dashboard/*" element={<Dashboard/>}></Route>
-          <Route path="/registration/:enquiryId" element={<Register/>}></Route>
+          
           {/* <Route path='/registration/:enquiryId' element={<Registration/>}></Route> */}
 
         </Routes>
