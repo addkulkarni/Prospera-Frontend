@@ -1,15 +1,14 @@
+import 'bootstrap'
 import React from 'react'
-import './Body.css'
-import Enquiry from '../enquiry/Enquiry'
-import EMICalculator from '../emicalculator/EMICalculator'
-import About from '../about/About'
-import Process from '../process/Process'
-import Faq from '../faq/Faq'
-import Registration from '../registration/Registration'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
-import '../../../node_modules/bootstrap/dist/js/bootstrap.js'
-import Navbar from '../navbar/Navbar.js';
-import Footer from '../footer/Footer.js'
+import Enquiry from '../../modules/enquiry/Enquiry.js'
+import About from '../../template/about/About.js'
+import EMICalculator from '../../template/emicalculator/EMICalculator.js'
+import Faq from '../../template/faq/Faq.js'
+import Footer from '../../template/footer/Footer.js'
+import Process from '../../template/process/Process.js'
+import Navbar from '../navbar/Navbar.js'
+import './Body.css'
 function Body() {
   return (
   <div >
@@ -27,7 +26,7 @@ function Body() {
       <EMICalculator></EMICalculator>
     </div>
     <div>
-      {/* <Registration/> */}
+     
       <About></About>
       <Process></Process>
       <Faq></Faq>

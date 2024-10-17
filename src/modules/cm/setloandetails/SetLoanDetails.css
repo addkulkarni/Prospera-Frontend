@@ -1,0 +1,78 @@
+.setLoan-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensures the page covers the full viewport height */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(72, 197, 183, 1) 21%, rgba(35, 59, 94, 1) 100%);
+}
+
+.setLoan-form-container {
+  width: 100%;
+  max-width: 400px; /* Limits the width for better responsiveness */
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Softer shadow for a cleaner look */
+  padding: 30px;
+  margin: 20px auto; /* Centers the form horizontally */
+}
+
+.setLoan-title {
+  text-align: center;
+  color: #233b5e; /* Title color to match other components */
+  margin-bottom: 20px;
+  font-size: 1.5em; /* Adjusted font size for better readability */
+
+}
+
+.set-form-element {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+
+.setLoan-field {
+  width: 100%;
+  padding: 12px 16px; /* Adds some padding for better input field aesthetics */
+  padding-left: 40px; /* Space for the icon */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s ease; /* Smooth border transition */
+}
+
+.setLoan-field:focus {
+  border-color: #48c5b7; /* Changes border color when input is focused */
+  outline: none; /* Removes default outline */
+  box-shadow: 0px 0px 5px rgba(72, 197, 183, 0.5); /* Adds a subtle focus shadow */
+}
+
+.icon {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #233b5e; /* Color to match other components */
+  font-size: 1.2em;
+}
+
+.setLoan-form-button {
+  background-color: #233b5e;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Full-width button */
+  margin-top: 10px;
+}
+
+.setLoan-form-button:hover {
+  background-color: #2b4a7a; /* Slightly lighter shade for hover effect */
+}
+
+.setLoan-form-button:focus {
+  outline: none; /* Removes default focus outline */
+  box-shadow: 0px 0px 5px rgba(35, 59, 94, 0.5); /* Subtle focus shadow */
+}

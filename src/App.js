@@ -1,22 +1,33 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Body from './template/body/Body';
-import Login from './template/login/Login';
-import Oe from './template/oe/Oe';
+import Body from './include/body/Body';
+import Dashboard from './include/dashboard/Dashboard';
+import Login from './include/login/Login';
+
+
+import Register from './modules/re/registration/Register';
+
 function App() {
   return (
-    <div className="App">
+    <div >
+      <div className="App">
+
+      
       <BrowserRouter>
         
         <Routes>
           <Route path="" element={<Body/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
-          <Route path="/oe" element={<Oe/>}></Route>
+
+          <Route path="/dashboard/*" element={<Dashboard/>}></Route>
+          
+          {/* <Route path='/registration/:enquiryId' element={<Registration/>}></Route> */}
+
         </Routes>
         
         
       </BrowserRouter>
-      
+      </div>
       
       
     </div>

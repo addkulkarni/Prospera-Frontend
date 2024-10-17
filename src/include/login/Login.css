@@ -8,7 +8,7 @@
   }
   
   .login-form-container {
-    height: 300px; /* Increased height for better spacing */
+    height: 400px; /* Increased height for better spacing */
     width: 500px;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -45,3 +45,7 @@
     color: #233b5e; /* Color to match other components */
     font-size: 1.2em; /* Adjust the size of the icons */
   }
+  .error-message {
+    color: red; /* Change to your preferred color */
+    margin-top: 10px;
+}

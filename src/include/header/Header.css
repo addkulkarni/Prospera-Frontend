@@ -1,0 +1,98 @@
+.header-container {
+  width: 100%;
+  
+  padding: 10px 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+}
+
+.navbar-box-right {
+  display: flex;
+  align-items: center;
+  
+}
+
+.user-icon {
+  font-size: 24px;
+  color: #343a40;
+}
+
+.user-icon-button {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  padding: 8px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.user-icon-button:hover {
+  background-color: #f0f0f0;
+}
+
+.user-icon-button .dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 200px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  color: #343a40;
+  display: block;
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.logout-item {
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.logout-item a {
+  color: #d9534f;
+  text-decoration: none;
+}
+
+.logout-item a:hover {
+  color: #c9302c;
+  text-decoration: underline;
+}
+
+.main-dropdown-menu{
+  width:50px;
+  height: auto;
+
+  color: #ddd;
+}
+
+.ulist{
+  list-style-type: none;
+  border: 2px groove;
+
+}
