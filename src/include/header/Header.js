@@ -2,42 +2,29 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css' // Your custom styles
 import { FaUser } from 'react-icons/fa'; // Using React Icons for the user icon
+import Profile from './Profile';
 
 function Header() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleDropdownToggle = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  const[displayList,setDisplayList]=useState(false);
 
-  const handleOutsideClick = () => {
-    setIsDropdownOpen(false);
-  };
+  const showList = ()=>{
+    alert("clicked")
+    setDisplayList(true);
+  }
 
   return (
-    <div className="header-container" onClick={handleOutsideClick}>
+    <div className="header-container" >
       <nav className="navbar">
         <Link to={'/'} className="logo-container">
           <img className="logo" alt="Not available" src="/Images/Prospera Logo Text.png" />
         </Link>
         
         <div className='navbar-box-right'>
-          <div className="user-icon-button" onClick={(e) => { e.stopPropagation(); handleDropdownToggle(); }}>
-            <FaUser className="user-icon" />
-            {isDropdownOpen && (
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <strong>User Name:</strong> John Doe
-                </li>
-                <li className="dropdown-item">
-                  <strong>Role:</strong> Admin
-                </li>
-                <li className="dropdown-item logout-item">
-                  <Link to={'/'}>Logout</Link>
-                </li>
-              </ul>
-            )}
-          </div>
+          
+            <Profile></Profile>
+            
+          
         </div>
       </nav>
     </div>
