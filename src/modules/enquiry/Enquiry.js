@@ -16,6 +16,7 @@ function Enquiry() {
       .then(response => setStatement("Enquiry has been submitted successfully"))
       .catch(() => alert("Something went wrong"))
       .finally(() => setLoading(false));
+      reset();
   }
 
   return (

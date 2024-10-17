@@ -208,13 +208,12 @@ function VerifyForm({ onVerificationComplete }) {
 
       <h4>Document Details</h4>
       <div className='form-element'>
-        <label>Aadhar Document</label>
-        <input type="text"  {...register('doc.adhar')} readOnly />
-        <img  {...register('doc.adhar')} readOnly src={'data:image/jpg;base64, doc.adhar'}/>
+        <label>Adhar Card</label>
+        <input type="text" disabled {...register('doc.adhar')} readOnly />
       </div>
 
       <div className='form-element'>
-        <label>PAN Document</label>
+        <label>PAN Card</label>
         <input type="text" disabled {...register('doc.pan')} readOnly />
       </div>
 
