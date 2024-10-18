@@ -5,11 +5,13 @@ import { FaUser } from 'react-icons/fa';
 
 function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [user, setUser] = useState(null);
-
+  const [userInfo, setUserInfo] = useState({});
+  const [propic,setPropic] = useState();
   useEffect(() => {
     const userJson = localStorage.getItem('user');
-    setUser(userJson ? JSON.parse(userJson) : null);
+    const userData = JSON.parse(userJson);
+    (userData)?setPropic(userData.photo):setPropic(false);
+    setUserInfo(userData);
   }, []);
 
   const handleDropdownToggle = (e) => {
@@ -27,7 +29,7 @@ function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
-    setUser(null);
+    setUserInfo(null);
   };
 
   return (
@@ -45,20 +47,24 @@ function Header() {
             aria-haspopup="true"
             aria-expanded={isDropdownOpen}
           >
-            <FaUser className="user-icon" />
-            {isDropdownOpen && user && (
+            {propic ? (
+      <img src={`data:image/jpg;base64,${propic}`} alt="User Profile" />
+    ) : (
+      <FaUser className="default-user-icon" /> // Fallback icon when no profile picture is available
+    )}
+            {isDropdownOpen && userInfo && (
               <ul className="dropdown-menu">
                 
                 <li className="dropdown-item">
-                  <strong>User Name:</strong> {user.username}
+                  <strong>Name:</strong> {userInfo.firstname} {userInfo.lastname}
                 </li>
                 <li className="dropdown-item">
-                  <strong>Role:</strong> {user.userType}
+                  <strong>Role:</strong> {userInfo.userType}
                 </li>
                 <li className="dropdown-item">
-                  <strong>Email:</strong> {user.userEmail}
+                  <strong>Email:</strong> {userInfo.userEmail}
                 </li><br/>
-                <li>
+                <li className="logout-container">
                   <Link className='logout-form-button'to={'/'} onClick={handleLogout}>Logout</Link>
                 </li>
               </ul>

@@ -64,19 +64,19 @@ return (
             <form className='login-form' onSubmit={handleSubmit(onLogin)}>
                 <h2 className='login-title'>Login</h2>
                 <div>
+                <i className="bi bi-person username-icon"></i>
                     <input className='login-field' type='text' placeholder='Username' {...register('username')} />
-                    <i className="bi bi-person icon"></i>
+                    
                 </div>
                 <div>
+                <i className="bi bi-lock password-icon"></i>
                     <input className='login-field' type='password' placeholder='Password' {...register('password')} />
-                    <i className="bi bi-lock icon"></i>
+                    
                 </div>
                 <br />
                 {errorMessage && <p className="error-message">{errorMessage}</p>} 
                 <button type='submit' className='login-form-button'>Login</button>
-                <div className="col">
-                    <a href='#'>Forgot password?</a>
-                </div>
+                
             </form>
         </div>
     </div>
