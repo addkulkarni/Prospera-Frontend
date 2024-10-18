@@ -1,7 +1,7 @@
 .header-container {
   width: 100%;
-  
   padding: 10px 20px;
+  overflow: visible; /* Ensure dropdown is visible */
 }
 
 .navbar {
@@ -44,16 +44,24 @@
   background-color: #f0f0f0;
 }
 
-.user-icon-button .dropdown-menu {
+.user-icon-button .dropdown-menu 
+{
+  display: none; /* Hide by default */
   position: absolute;
-  right: 0;
-  top: calc(100% + 10px);
+  left: -325px;
+  top: 5%; /* Directly below the button */
   min-width: 200px;
   background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  z-index: 1000;
+  z-index: 1000; /* Ensure it appears above other elements */
   padding: 10px 0;
+  height: 28vh;
+}
+
+.user-icon-button:hover .dropdown-menu,
+.user-icon-button .dropdown-menu {
+  display: block; /* Show when open */
 }
 
 .dropdown-item {
@@ -81,4 +89,22 @@
 .logout-item a:hover {
   color: #c9302c;
   text-decoration: underline;
+}
+
+.profile-image {
+  border-radius: 180px;
+  border: 2px rgb(25, 3, 3) groove;
+  margin-right: 30px;
+}
+.logout-form-button {
+  margin: 10px;
+  background-color: #235b5e;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 13px;
+  cursor: pointer;
+  width: 80%; /* Make button full width */
+  height: 40px;
+  margin-left: 99px;
+  align-items: center;
 }
