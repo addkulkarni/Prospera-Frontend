@@ -14,6 +14,7 @@ function Oe() {
     const [loading, setLoading] = useState(false);
     const [filter, setFilter] = useState(''); 
     const[showForm,setShowForm]=useState(false);
+    
     useEffect(()=>{
         axios.get('http://localhost:9092/oe/oetasks')
         .then(response=>{setData(response.data);setFilteredData(response.data)})
@@ -48,10 +49,10 @@ function Oe() {
     const callCalculateCibil = (index) =>{
         setLoading(true);
         axios.get(`http://localhost:9092/oe/cibilscore/${index}`)
-        .then(response=>{setCustomer(response.data);alert(`Your cibil score is: ${response.data}`)})
+        .then(response=>{setCustomer(response.data);alert(`Your cibil score is: ${response.data}`);navigate(0);})
         .catch(error=>console.log("Something went wrong"))
         .finally(() => setLoading(false));
-        navigate(0);
+        
     }
 
     const cols = [
@@ -85,8 +86,8 @@ function Oe() {
                         loading?<div className="loading-container">
                                     <TailSpin height="40" width="40" color="#48c5b7" ariaLabel="Submitting Enquiry" />
                                     <p>Submitting Enquiry</p>
-                                </div>: <div><button onClick={() => callCalculateCibil(row.enquiryID)} hidden={row.enquiryStatus === "Pending Verification"} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px'}}>Calculate CIBIL</button>
-                                             <button onClick={() => verifyUser(row.enquiryID)} hidden={row.enquiryStatus === "Forwarded to OE"} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px'}}>Verify</button>
+                                </div>: <div><button onClick={() => callCalculateCibil(row.enquiryID)} hidden={row.enquiryStatus === "Pending Verification"} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'120px'}}>Calculate CIBIL</button>
+                                             <button onClick={() => verifyUser(row.enquiryID)} hidden={row.enquiryStatus === "Forwarded to OE"} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'120px'}}>Verify</button>
                                         </div>
                     }
                     
@@ -111,7 +112,7 @@ function Oe() {
   return (
     
       
-       <div className='col-12 mt-4 outer-container' style={{minHeight:'94vh'}}>
+       <div className='col-12 mt-4 outer-container' style={{minHeight:'92vh'}}>
             
       <div>
         {

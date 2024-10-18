@@ -11,13 +11,13 @@ function RE() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://gayatri:9093/re/getAllPendingRegistration')
+    axios.get('http://localhost:9093/re/getAllPendingRegistration')
       .then(response => setData(response.data))
       .catch(error => console.log("Something went wrong"));
   }, []);
 
   const saveRegister = (enquiryID) => {
-    navigate(`/registration/${enquiryID}`);
+    navigate(`/dashboard/re/${enquiryID}`);
   };
 
 
@@ -51,7 +51,7 @@ const cols=[
     name: "Action",
     cell: (row) => (
       //  <Link className='btn btn-warning me-2 login-form-button' to={'register'}>Register</Link>
-      <button style={{ backgroundColor: '#233b5e', color: 'white', padding: '10px', border: 'none', borderRadius: '10px', cursor: 'pointer' }} onClick={()=>saveRegister(row.enquiryID)}>
+      <button style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px'}} onClick={()=>saveRegister(row.enquiryID)}>
         Register
       </button>
     ),
@@ -61,21 +61,12 @@ const cols=[
 ]
 
   return (
-    <div>
-      <div>
-
-        <i className="bi bi-filter"></i>&nbsp;&nbsp;
-        <select>
-          <option value="" disabled>SELECT</option>
-          <option value="PendingRegistration" onSelect={getAllPendingRegistration}>Pending Registration</option>
-        </select>&nbsp;&nbsp;
-      </div>
-      <div>
+    <div className='m-3 mt-5' style={{minHeight:'86vh'}}>
+     
+     
       <DataTable columns={cols} data={data} pagination fixedHeader></DataTable>
-      </div>
-      {/* <Routes>
-        <Route path='register' element={<Registration/>}></Route>
-      </Routes> */}
+  
+      
 
      
     </div>

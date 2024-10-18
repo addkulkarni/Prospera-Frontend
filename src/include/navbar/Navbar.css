@@ -55,8 +55,15 @@
   cursor:pointer;
 }
 
-.login-button {
+.login-link {
   background-color: #48c5b7;
+  border-radius: 30px;
+  color: #ffffff;
+}
+
+.login-link:hover{
+  background-color: #33ad9f;
+  transition: background-color 0.5s ease-in-out;
   border-radius: 30px;
   color: #ffffff;
 }

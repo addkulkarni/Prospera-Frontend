@@ -1,12 +1,16 @@
 
 import axios from 'axios';
+import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import validator from '../../../../validation/Validator';
+import validator from '../../../validation/Validator';
 import './Registration.css';
 
+
 function Registration() {
+
+ 
   const { enquiryId} = useParams();
   const [step, setStep] = useState(1);
   const [statement,setStatement] = useState("");
@@ -32,150 +36,142 @@ function Registration() {
   },[enquiryId]);
 
   useEffect(()=>{
-    setValue('enquiryID',enquiryId);
+    setValue('enquiry.enquiryID',enquiryId);
         for (let prop in enquiry) {
           setValue(prop, enquiry[prop]);
         }
   },[enquiry,setValue])
 
 
-
-  // const submitForm = (data) => {
-  //   // console.log(data);
-  //   axios.post(`http://localhost:9093/re/savedata`, data)
-  //     .then(response => {//correct
-  //       console.log(response.data);
-  //       alert('Registration successfully');
-  //     })
-  //     .catch(() => alert("Something went wrong"));
-  // };
-
-
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setFiles(prevFiles => ({ ...prevFiles, [name]: files[0] }));
-  };
-
-
-//   const submitForm = (data) => {
-//     const formData = new FormData();
-    
-//     // Append all form fields
-//     for (const key in data) {
-//         formData.append(key, JSON.stringify(data[key])); // Keep handling nested objects
-//     }
-    
-//     // Append files based on the keys
-//     if (files.adhar) formData.append("adhar", files.adhar);
-//     if (files.pan) formData.append("pan", files.pan);
-//     if (files.photo) formData.append("photo", files.photo);
-//     if (files.sign) formData.append("sign", files.sign);
-//     if (files.incomeCertificate) formData.append("incomeCertificate", files.incomeCertificate);
-//     if (files.salarySlip) formData.append("salarySlip", files.salarySlip);
-
-//     // Log formData for debugging
-//     formData.forEach((value, key) => {
-//         console.log(key, value);
-//     });
-
-//     axios.post('http://localhost:9093/re/savedata', formData)
-//         .then(response => {
-//             console.log(response.data);
-//             alert('Registration successfully');
-//         })
-//         .catch((error) => {
-//           const errorMessage = error.response?.data || "Something went wrong";
-//           console.error("Error saving data:", error);
-//           alert(errorMessage);
-//       });
-// };
+ 
 
 
 
-
-
-  const submitForm = (data) => {
+const submitForm = async (data) => {
+  try {
     const formData = new FormData();
-    
-    // Append all form fields
-    for (const key in data) {
-      let dt = JSON.stringify(data[key])
-      // formData.append(key, dt);
-      formData.append("data", dt)
+    const formattedDob = format(new Date(data.dob), 'dd/MM/yyyy'); 
+    // Create an object to hold the specific fields
+    const payload = {
+      dob: formattedDob, // Assuming you handle this as a string in the required format
+      enquiry: {
+        enquiryID: data.enquiry.enquiryID
+      },
+      bank: {
+        bankName: data.bank.bankName,
+        branch: data.bank.branch,
+        ifscCode: data.bank.ifscCode,
+        accNo: data.bank.accNo,
+        accType: data.bank.accType
+      },
+      padr: {
+        areaName: data.padr.areaName,
+        cityName: data.padr.cityName,
+        district: data.padr.district,
+        pincode: data.padr.pincode,
+        state: data.padr.state,
+        country: data.padr.country
+      },
+      ladr: {
+        areaName: data.ladr.areaName,
+        cityName: data.ladr.cityName,
+        district: data.ladr.district,
+        pincode: data.ladr.pincode,
+        state: data.ladr.state,
+        country: data.ladr.country
+      },
+      emp: {
+        organization: data.emp.organization,
+        type: data.emp.type,
+        status: data.emp.status
+      },
+      disbursement: {} // If this is empty, you can just send it as is
+    };
+
+    // Append the JSON payload
+    formData.append('data', JSON.stringify(payload));
+
+    // Append the file inputs
+    if (data.doc.adhar) {
+      formData.append('adhar', data.doc.adhar[0]);
     }
-    
-    // Append all files
-    for (const key in files) {
-      console.log(files)
-      // if (files[key]) {
-        // formData.append(key, files[key]);
-        formData.append("adhar", files[key]);
-        formData.append("pan", files[key]);
-        formData.append("photo", files[key]);
-        formData.append("sign", files[key]);
-        formData.append("incomeCertificate", files[key]);
-        formData.append("salarySlip", files[key]);
-      // }
+    if (data.doc.pan) {
+      formData.append('pan', data.doc.pan[0]);
+    }
+    if (data.doc.photo) {
+      formData.append('photo', data.doc.photo[0]);
+    }
+    if (data.doc.sign) {
+      formData.append('sign', data.doc.sign[0]);
+    }
+    if (data.doc.incomeCertificate) {
+      formData.append('incomeCertificate', data.doc.incomeCertificate[0]);
+    }
+    if (data.doc.salarySlip) {
+      formData.append('salarySlip', data.doc.salarySlip[0]);
     }
 
-  
-    // Log formData for debugging
-    formData.forEach((value, key) => {
-      console.log(key,value);
+    // Make the POST request
+    const response = await axios.post('http://localhost:9093/re/savedata', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     });
-  
-    axios.post('http://localhost:9093/re/savedata', formData)
-      .then(response => {
-        console.log(response.data);
-        alert('Registration successfully');
-      })
-      .catch((error) => {
-        console.error("Error saving data:", error);
-        alert("Something went wrong");
-      });
-  };
-  
+
+    // Handle success response
+    console.log('Response:', response.data);
+    alert(response.data); // Or handle as per your app requirements
+  } catch (error) {
+    console.error('Error:', error);
+    alert('There was an error submitting the form. Please try again.');
+  }
+};
+
+
   
 
 
   return (
-    <div >
+    <div style={{height:'auto', display:'block',backgroundSize:''}} className="reg-form-container">
       
-      <form className='register-form' onSubmit={handleSubmit(submitForm)}>
+      <form className="reg-form" onSubmit={handleSubmit(submitForm)}>
       <h5 className='subheading1'>{statement}</h5>
       {/* <input hidden {...register('enquiry.enquiryID')}/> */}
       {step===1 && (
       <div className='step'>
-        <h4>Personal Details</h4>
-        <div className='form-element1'><label>Enquiry Id: </label>
-        <input type="number" {...register('enquiryID')}/></div>
-        <div className='form-element1'><label>First name: </label><span>{errors.fname&&errors.fname.message}</span>
-        <input type="text" {...register('firstName')}/></div>
-        <div className='form-element1'><label>Last name: </label>
-        <input type="text" {...register('lastName')}/></div>
+        <h5 className='subheading'>Personal Details</h5>
+        <div className='form-element1'>
+        <input type="number" hidden {...register('enquiry.enquiryID')}/></div>
+
+        <div className='reg-form-element'><label>First name: </label><span>{errors.fname&&errors.fname.message}</span>
+        <input type="text" placeholder='First name' {...register('firstName')}/></div>
+
+        <div className='reg-form-element'><label>Last name: </label>
+        <input type="text" placeholder='Last name' {...register('lastName')}/></div>
         
-        <div className='form-element1'><label>Age: </label><span>{errors.age&&errors.age.message}</span>
+        <div className='reg-form-element'><label>Age: </label><span>{errors.age&&errors.age.message}</span>
         <input type="number" {...register('age',validator.age)}/></div>
       
-       <div className='form-element1'><label>Email: </label><span>{errors.email&&errors.email.message}</span>
+       <div className='reg-form-element'><label>Email: </label><span>{errors.email&&errors.email.message}</span>
        <input type="email" {...register('email',validator.email)}/></div>
 
-       <div className='form-element1'><label>Date Of Birth: </label><span>{errors.dob&&errors.dob.message}</span>
+       <div className='reg-form-element'><label>Date Of Birth: </label><span>{errors.dob&&errors.dob.message}</span>
        <input type="date" {...register('dob')}/></div>
        
-       <div className='form-element1'><label>Mobile number: </label><span>{errors.mobile&&errors.mobile.message}</span>
+       <div className='reg-form-element'><label>Mobile number: </label><span>{errors.mobile&&errors.mobile.message}</span>
        <input type="tel" {...register('mobileNo',validator.mobile)}/></div>
-       <div className='form-element1'><label>Gender: </label>
+
+       <div className='reg-form-element'><label>Gender: </label>
         <select {...register('gender')} defaultValue="">
           <option value="" disabled>---Select---</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select></div>
 
-        <div className='form-element1'><label>PAN card number: </label><span>{errors.pan&&errors.pan.message}</span>
+        <div className='reg-form-element'><label>PAN card number: </label><span>{errors.pan&&errors.pan.message}</span>
         <input type="text" {...register('pancardNo',validator.pan)}/></div>
         
-        <div className='form-element1'><label>Aadhar card number: </label><span>{errors.adhar&&errors.adhar.message}</span>
+        <div className='reg-form-element'><label>Aadhar card number: </label><span>{errors.adhar&&errors.adhar.message}</span>
         <input type="text" {...register('adharcardNo',validator.adhar)}/></div>
 
        </div>
@@ -184,35 +180,35 @@ function Registration() {
       )}
 
       {step===2 && (
-        <div>
-          <h2>Bank Details</h2>
-       <div className='form-element1'><label>Bank Name:</label>
+        <div className='step'>
+          <h5 className='subheading'>Bank Details</h5>
+       <div className='reg-form-element'><label>Bank Name:</label>
        <input type='text' {...register('bank.bankName')}/></div>
 
-        <div className='form-element1'><label>Branch Name:</label>
+        <div className='reg-form-element'><label>Branch Name:</label>
         <input type='text' {...register('bank.branch')}/></div>
 
-        <div className='form-element1'><label>IFSC Code:</label>
-        <input type='text' {...register('bank.ifsccode')}/></div>
+        <div className='reg-form-element'><label>IFSC Code:</label>
+        <input type='text' {...register('bank.ifscCode')}/></div>
 
-        <div className='form-element1'><label>Account Number:</label>
+        <div className='reg-form-element'><label>Account Number:</label>
         <input type='number' {...register('bank.accNo')}/></div>
 
-        <div className='form-element1'><label>Account Type:</label>
+        <div className='reg-form-element'><label>Account Type:</label>
         <input type='text' {...register('bank.accType')}/></div>
          </div>
       )}
 
       {step===3 && (
-        <div>
-          <h2>Employment Details</h2>
-          <div className='form-element1'><label>Organization Name:</label>
+        <div className='step'>
+          <h5 className='subheading'>Employment Details</h5>
+          <div className='reg-form-element'><label>Organization Name:</label>
           <input type='text' {...register('emp.organization')}/></div>
 
-          <div className='form-element1'><label>Organization Type:</label>
+          <div className='reg-form-element'><label>Organization Type:</label>
           <input type='text' {...register('emp.type')}/></div>
 
-          <div className='form-element1'><label>Organization Status:</label>
+          <div className='reg-form-element'><label>Organization Status:</label>
           <input type='text' {...register('emp.status')}/></div>
 
         </div>
@@ -220,25 +216,25 @@ function Registration() {
       )} 
         
       {step===4 && (
-        <div>
-          <h2>Permanent Address</h2>
-        <div className='form-element1'><label>Area Name: </label><span>{errors.amount&&errors.amount.message}</span>
+        <div className='step'>
+          <h5 className='subheading'>Permanent Address</h5>
+        <div className='reg-form-element'><label>Area Name: </label><span>{errors.amount&&errors.amount.message}</span>
         <input type="text" {...register('padr.areaName')}/></div>
         
-        <div className='form-element1'><label>City Name: </label>
+        <div className='reg-form-element'><label>City Name: </label>
         <input type="text" {...register('padr.cityName')}/></div>
 
-        <div className='form-element1'><label>District:</label>
+        <div className='reg-form-element'><label>District:</label>
         <input type='text' {...register('padr.district')}/></div>
 
-        <div className='form-element1'><label>Pincode:</label><br/>
+        <div className='reg-form-element'><label>Pincode:</label><br/>
         <input type='number' {...register('padr.pincode')}/></div>
 
 
-        <div className='form-element1'><label>State:</label>
+        <div className='reg-form-element'><label>State:</label>
         <input type='text' {...register('padr.state')}/></div>
 
-        <div className='form-element1'><label>Country:</label>
+        <div className='reg-form-element'><label>Country:</label>
         <input type='text' {...register('padr.country')}/></div>
 
     
@@ -246,75 +242,68 @@ function Registration() {
       )}
 
      {step===5 && (
-        <div>
-          <h2>Local Address</h2>
-        <div className='form-element1'><label>Area Name: </label><span>{errors.amount&&errors.amount.message}</span>
+        <div className='step'>
+          <h5 className='subheading'>Local Address</h5>
+        <div className='reg-form-element'><label>Area Name: </label><span>{errors.amount&&errors.amount.message}</span>
         <input type="text" {...register('ladr.areaName')}/></div>
         
-        <div className='form-element1'><label>City Name: </label>
+        <div className='reg-form-element'><label>City Name: </label>
         <input type="text" {...register('ladr.cityName')}/></div>
 
-        <div className='form-element1'><label>District:</label>
+        <div className='reg-form-element'><label>District:</label>
         <input type='text' {...register('ladr.district')}/></div>
 
-        <div className='form-element1'><label>Pincode:</label><br/>
+        <div className='reg-form-element'><label>Pincode:</label><br/>
         <input type='number' {...register('ladr.pincode')}/></div>
 
 
-        <div className='form-element1'><label>State:</label>
+        <div className='reg-form-element'><label>State:</label>
         <input type='text' {...register('ladr.state')}/></div>
 
-        <div className='form-element1'><label>Country:</label>
+        <div className='reg-form-element'><label>Country:</label>
         <input type='text' {...register('ladr.country')}/></div>
 
     
         </div>
       )}
 
-{step===6 && (
-        <div>
-          <h2>Disbursment</h2>
-        {/* <div className='form-element1'><label>: </label><span>{errors.amount&&errors.amount.message}</span> */}
-        <input type="text" {...register('disbursement.disbursementAccountNo')}/>
-        <input type="text" {...register('disbursement.disbursementLetter')}/></div>
-        // </div>
-      )}
 
-      {step===7 &&(
-        <div>
-        <h2>Upload Document</h2>
-        <div className='form-element1'><label>AadharCard: </label>
-        <input type="file" {...register('doc.adhar')}  onChange={handleFileChange}/></div>
 
-        <div className='form-element1'><label>PanCard: </label>
-        <input type="file" {...register('doc.pan')} onChange={handleFileChange}/></div>
+      {step===6 &&(
+      <div className='step'>
+        <h5 className='subheading'>Upload Document</h5>
+        <div className='reg-form-element'><label>AadharCard: </label>
+        <input type="file" {...register('doc.adhar')} /></div>
 
-        <div className='form-element1'><label>Photo: </label>
-        <input type="file" {...register('doc.photo')} onChange={handleFileChange}/></div>
+        <div className='reg-form-element'><label>PanCard: </label>
+        <input type="file" {...register('doc.pan')}/></div>
 
-        <div className='form-element1'><label>Sign: </label>
-        <input type="file" {...register('doc.sign')} onChange={handleFileChange} /></div>
+        <div className='reg-form-element'><label>Photo: </label>
+        <input type="file" {...register('doc.photo')} /></div>
 
-        <div className='form-element1'><label>Income Certificate: </label>
-        <input type="file" {...register('doc.incomeCertificate')} onChange={handleFileChange} /></div>
+        <div className='reg-form-element'><label>Sign: </label>
+        <input type="file" {...register('doc.sign')}  /></div>
 
-        <div className='form-element1'><label>Salary Slip: </label>
-        <input type="file" {...register('doc.salarySlip')} onChange={handleFileChange}/></div>
+        <div className='reg-form-element'><label>Income Certificate: </label>
+        <input type="file" {...register('doc.incomeCertificate')} /></div>
+
+        <div className='reg-form-element'><label>Salary Slip: </label>
+        <input type="file" {...register('doc.salarySlip')} /></div>
       </div>
       )}
 
         <div className='form-navigation1'>
           {step > 1 && (
-            <button type="button" className='nav-button1' onClick={prevStep}>
+            <button type="button" className='nav-button1-previous' onClick={prevStep}>
               Previous
             </button>
           )}
-          {step < 7 && (
-            <button type="button" className='nav-button1' onClick={nextStep} >
+          {step < 6 && (
+            <button type="button" className='nav-button1-next' onClick={nextStep} >
               Next
             </button>
           )}
-          {step === 7 && (
+          {step === 6 && (
             <button type="submit" className='submit-button1'>
               Submit Form
             </button>

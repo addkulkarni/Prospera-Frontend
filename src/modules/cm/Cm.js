@@ -40,8 +40,9 @@ function Cm() {
         }
     }
     const handleSetLoanDetails = (cid) => {
-        setSelectedCid(cid); // Set the selected CID
-        setShowForm(true); // Show the form
+        // setSelectedCid(cid); // Set the selected CID
+        // setShowForm(true); // Show the form
+        navigate(`/dashboard/cm/setloandetails/${cid}`);
     };
     
 
@@ -82,11 +83,7 @@ function generatesanctionletter(cid)
 
    
  const cols=[
-        {
-        name:"Customer ID",
-        selector:row=>row.cid,
-        sortable:true
-        },
+        
         {
             name:"First Name",
             selector:row=>row.firstName,
@@ -112,34 +109,21 @@ function generatesanctionletter(cid)
             selector:row=>row.enquiry?.cibil?.cibilscore||'NA',
             sortable:true
         },
-        {
-            name:"Bank Name",
-            selector:row=>row.bank?.bankName||'NA',
-            sortable:true
-        },
-        {
-            name:"Bank IFSC code",
-            selector:row=>row.bank?.ifscCode||'NA',
-            sortable:true
-        },
-        {
-            name:"Bank Account No",
-            selector:row=>row.bank?.accNo||'NA',
-            sortable:true
-        },
+        
+        
         {
             name:"Actions",
             cell: (row) => (
             <>
                 {row.enquiry?.enquiryStatus === "Pending Sanction" && (
-                    <button className='set-cm-button' onClick={() => handleSetLoanDetails(row.cid)}>Set Loan Details</button>
+                    <button className='set-cm-button' onClick={() => handleSetLoanDetails(row.cid)} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'170px'}}>Set Loan Details</button>
                 )}
                 {row.enquiry?.enquiryStatus === "Sanction Process In Progress" && (
-                    <button  className='set-cm-button' onClick={() => calculateEmi(row.cid)}>Calculate EMI</button>
+                    <button  className='set-cm-button' onClick={() => calculateEmi(row.cid)} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'170px'}}>Calculate EMI</button>
                 )}
                {
                (row.enquiry?.enquiryStatus === "EMI calculated" || row.enquiry?.enquiryStatus === "Sanction Letter Generated") && (
-                <button className='set-cm-button' onClick={() => generatesanctionletter(row.cid)}>Generate Sanction Letter and Send Email</button>
+                <button className='set-cm-button' onClick={() => generatesanctionletter(row.cid)} style={{borderRadius:'4px', backgroundColor:'#233b5e',color:'white',border:'none',padding:'10px',width:'170px'}}>Generate and Email SL</button>
                )
                }
             </>
@@ -147,33 +131,32 @@ function generatesanctionletter(cid)
         }
     ]
   return (
-    <div>
-    {(showForm)? (<SetLoanDetails cid={selectedCid} setShowForm={setShowForm} /> ):(<div>
-        <div className='m-3'>
+            <div>
             {
-                <div style={{ marginBottom: '20px' }} className='float-start'>
-                <label className='m-3'>Filter By:</label>&nbsp;&nbsp;
-                    <select value={filter} onChange={handleFilterChange} className='m1-auto'>
-                        <option disabled>Filter by</option>
-                        <option value="Pending Sanction">Pending Sanction Details</option>
-                        <option value="Sanction Process In Progress">Pending EMI Calculation</option>
-                        <option value="EMI calculated">Pending Sanction letter generation</option>
-                        <option value="">Show all</option>
-                    </select>
-            </div>
-
+                (showForm)? (<SetLoanDetails cid={selectedCid} setShowForm={setShowForm} /> ):
+                (
+                <div>
+                    <div className='m-3'>
+                    {
+                        <div style={{ marginBottom: '20px' }} className='float-start'>
+                            <label className='m-3'>Filter By:</label>&nbsp;&nbsp;
+                            <select value={filter} onChange={handleFilterChange} className='m1-auto'>
+                                <option disabled>Filter by</option>
+                                <option value="Pending Sanction">Pending Sanction Details</option>
+                                <option value="Sanction Process In Progress">Pending EMI Calculation</option>
+                                <option value="EMI calculated">Pending Sanction letter generation</option>
+                                <option value="">Show all</option>
+                            </select>
+                        </div>
+                    } 
+                    </div>
+                    <div className=' mt-3 m-3' style={{minHeight:'94vh'}}>
+                        <DataTable columns={cols} data={filteredData} pagination fixedHeader> </DataTable>
+                    </div>
+                </div>)
             } 
-            
-        </div>
-        <div className=' mt-3 m-3' style={{minHeight:'94vh'}}>
-        <DataTable columns={cols} data={filteredData} pagination fixedHeader> </DataTable>
-        </div>
-        
-    </div>
-    
-    )}
-</div>
-);
+            </div>  
+        );
 }
 
 

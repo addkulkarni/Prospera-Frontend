@@ -23,29 +23,37 @@ function Login() {
         } else {
             const userJson = JSON.stringify(response.data);
             localStorage.setItem('user', userJson);
-              if(response.data.userType==='oe')
+              if(response.data.userType==='OE')
                {
                 nnavigation('/dashboard/oe');
                }
-             else if(response.data.userType==='re')
+             else if(response.data.userType==='RE')
                {
                   nnavigation('/dashboard/re');
                }
-             else if(response.data.userType==='cm')
+               else if(response.data.userType==='Admin')
+                {
+                   nnavigation('/dashboard/admin');
+                }
+             else if(response.data.userType==='CM')
                {
                     nnavigation('/dashboard/cm');
                }
-             else if(response.data.userType==='ah')
+             else if(response.data.userType==='AH')
                {
                      nnavigation('/dashboard/ah');
                }
-             else 
+             else if(response.data.userType==='Customer')
                {
                       nnavigation('/dashboard/customer');
                }
+               else{
+                nnavigation(0);
+               }
             
         }
-    } catch (error) {
+    } 
+    catch (error) {
         console.log(error);
     }
 

@@ -48,7 +48,7 @@
 {
   display: none; /* Hide by default */
   position: absolute;
-  left: -325px;
+  left: -315px;
   top: 5%; /* Directly below the button */
   min-width: 200px;
   background-color: #ffffff;
